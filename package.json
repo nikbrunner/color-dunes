@@ -2,7 +2,7 @@
     "name": "nibru_psychdunes",
     "version": "1.0.0",
     "description": "",
-    "main": "index.html",
+    "main": "./src/index.html",
     "scripts": {
         "dev": "parcel src/index.html -d devServer",
         "dist": "parcel build src/index.html -d dist"
