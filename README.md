@@ -1,4 +1,4 @@
-# Color Dunes
+# psychDunes
 
 ## Description
 
