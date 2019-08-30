@@ -1,0 +1,28 @@
+@import 'variables';
+
+@mixin grid($columns, $column-gap, $rows, $row-gap) {
+    display: -ms-grid;
+    display: grid;
+    grid-template-columns: $columns;
+    grid-column-gap: $column-gap;
+    grid-template-rows: $rows;
+    grid-row-gap: $row-gap;
+}
+
+@mixin flex($flex-flow, $justify-content, $align-content, $align-items) {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-flow: $flex-flow;
+    flex-flow: $flex-flow;
+    -webkit-box-pack: $justify-content;
+    -ms-flex-pack: $justify-content;
+    justify-content: $justify-content;
+    -ms-flex-line-pack: $align-content;
+    align-content: $align-content;
+    -webkit-box-align: $align-items;
+    -ms-flex-align: $align-items;
+    align-items: $align-items;
+}

@@ -2,8 +2,13 @@
 const btnStart = document.getElementById('btnStart');
 const btnStop = document.getElementById('btnStop');
 const container = document.getElementById('container');
-const display = document.getElementById('display');
 const ball = document.getElementById('ball');
+const display = document.getElementById('display');
+const displayColor1 = document.getElementById('display__color1');
+const displayColor2 = document.getElementById('display__color2');
+const displayColor3 = document.getElementById('display__color3');
+const displayColor4 = document.getElementById('display__color4');
+const displayColor5 = document.getElementById('display__color5');
 
 // Waves
 const wave1 = document.getElementById('wave1');
@@ -120,6 +125,11 @@ function moveBallX() {
         wave2.style.fill = randomColor2;
         wave3.style.fill = randomColor2;
         wave4.style.fill = randomColor2;
+        displayColor1.style.background = randomColor2;
+        displayColor2.style.background = randomColor2;
+        displayColor3.style.background = randomColor2;
+        displayColor4.style.background = randomColor2;
+        displayColor5.style.background = randomColor2;
         leftToRight = false;
     } else if (ballEdgeLeft <= containerEdgeLeft) {
         randomColor1 = randomColor(1);
@@ -130,6 +140,11 @@ function moveBallX() {
         wave2.style.fill = randomColor2;
         wave3.style.fill = randomColor2;
         wave4.style.fill = randomColor2;
+        displayColor1.style.background = randomColor2;
+        displayColor2.style.background = randomColor2;
+        displayColor3.style.background = randomColor2;
+        displayColor4.style.background = randomColor2;
+        displayColor5.style.background = randomColor2;
         leftToRight = true;
     }
 
@@ -149,6 +164,11 @@ function moveBallY() {
         wave2.style.fill = randomColor2;
         wave3.style.fill = randomColor2;
         wave4.style.fill = randomColor2;
+        displayColor1.style.background = randomColor2;
+        displayColor2.style.background = randomColor2;
+        displayColor3.style.background = randomColor2;
+        displayColor4.style.background = randomColor2;
+        displayColor5.style.background = randomColor2;
         topToBottom = false;
     } else if (ballEdgeTop <= containerEdgeTop) {
         randomColor1 = randomColor(1);
@@ -159,6 +179,11 @@ function moveBallY() {
         wave2.style.fill = randomColor2;
         wave3.style.fill = randomColor2;
         wave4.style.fill = randomColor2;
+        displayColor1.style.background = randomColor2;
+        displayColor2.style.background = randomColor2;
+        displayColor3.style.background = randomColor2;
+        displayColor4.style.background = randomColor2;
+        displayColor5.style.background = randomColor2;
         topToBottom = true;
     }
 
