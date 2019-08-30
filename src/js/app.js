@@ -2,6 +2,7 @@
 const btnStart = document.getElementById('btnStart');
 const btnStop = document.getElementById('btnStop');
 const container = document.getElementById('container');
+const display = document.getElementById('display');
 const ball = document.getElementById('ball');
 
 // Waves
@@ -72,12 +73,20 @@ function startMove() {
     startMoveX();
     startMoveY();
     runner = true;
+    display.classList.remove('show');
+    display.classList.add('hide');
+    ball.classList.remove('hide');
+    ball.classList.add('show');
 }
 
 function stopMove() {
     stopMoveX();
     stopMoveY();
     runner = false;
+    ball.classList.add('hide');
+    ball.classList.remove('show');
+    display.classList.remove('hide');
+    display.classList.add('show');
 }
 
 function stopMoveX() {
