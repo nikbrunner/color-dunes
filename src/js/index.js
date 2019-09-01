@@ -1,3 +1,5 @@
+var Color = require('color');
+
 // UI Elements
 const btnStart = document.getElementById('btnStart');
 const btnStop = document.getElementById('btnStop');
@@ -25,8 +27,9 @@ let containerEdgeRight;
 let containerEdgeBottom;
 
 // Variables
-let ballEdgeLeft, ballEdgeTop, ballEdgeRight, ballEdgteBottom;
+let ballEdgeLeft, ballEdgeTop, ballEdgeRight, ballEdgeBottom;
 let randomColor1, randomColor2;
+let randomColor2_shade_dark, randomColor2_shade_darker, randomColor2_shade_darkest;
 let steps = 3;
 let currPosX = 0;
 let currPosY = 0;
@@ -59,17 +62,7 @@ function init() {
     containerEdgeRight = container.offsetWidth;
     containerEdgeBottom = container.offsetHeight;
 
-    // Generate Colors
-    randomColor1 = randomColor(1);
-    randomColor2 = randomColor(1);
-
-    // Paint the walls
-    document.body.style.background = randomColor1;
-    ball.style.background = randomColor2;
-    wave1.style.fill = randomColor2;
-    wave2.style.fill = randomColor2;
-    wave3.style.fill = randomColor2;
-    wave4.style.fill = randomColor2;
+    generateModifyAndPaint();
 }
 
 init();
@@ -117,34 +110,10 @@ function moveBallX() {
     ballEdgeRight = currPosX + ballWidth;
 
     if (ballEdgeRight >= containerEdgeRight) {
-        randomColor1 = randomColor(1);
-        randomColor2 = randomColor(1);
-        document.body.style.background = randomColor1;
-        ball.style.background = randomColor2;
-        wave1.style.fill = randomColor2;
-        wave2.style.fill = randomColor2;
-        wave3.style.fill = randomColor2;
-        wave4.style.fill = randomColor2;
-        displayColor1.style.background = randomColor2;
-        displayColor2.style.background = randomColor2;
-        displayColor3.style.background = randomColor2;
-        displayColor4.style.background = randomColor2;
-        displayColor5.style.background = randomColor2;
+        generateModifyAndPaint();
         leftToRight = false;
     } else if (ballEdgeLeft <= containerEdgeLeft) {
-        randomColor1 = randomColor(1);
-        randomColor2 = randomColor(1);
-        document.body.style.background = randomColor1;
-        ball.style.background = randomColor2;
-        wave1.style.fill = randomColor2;
-        wave2.style.fill = randomColor2;
-        wave3.style.fill = randomColor2;
-        wave4.style.fill = randomColor2;
-        displayColor1.style.background = randomColor2;
-        displayColor2.style.background = randomColor2;
-        displayColor3.style.background = randomColor2;
-        displayColor4.style.background = randomColor2;
-        displayColor5.style.background = randomColor2;
+        generateModifyAndPaint();
         leftToRight = true;
     }
 
@@ -156,34 +125,10 @@ function moveBallY() {
     ballEdgeBottom = currPosY + ballHeight;
 
     if (ballEdgeBottom >= containerEdgeBottom) {
-        randomColor1 = randomColor(1);
-        randomColor2 = randomColor(1);
-        document.body.style.background = randomColor1;
-        ball.style.background = randomColor2;
-        wave1.style.fill = randomColor2;
-        wave2.style.fill = randomColor2;
-        wave3.style.fill = randomColor2;
-        wave4.style.fill = randomColor2;
-        displayColor1.style.background = randomColor2;
-        displayColor2.style.background = randomColor2;
-        displayColor3.style.background = randomColor2;
-        displayColor4.style.background = randomColor2;
-        displayColor5.style.background = randomColor2;
+        generateModifyAndPaint();
         topToBottom = false;
     } else if (ballEdgeTop <= containerEdgeTop) {
-        randomColor1 = randomColor(1);
-        randomColor2 = randomColor(1);
-        document.body.style.background = randomColor1;
-        ball.style.background = randomColor2;
-        wave1.style.fill = randomColor2;
-        wave2.style.fill = randomColor2;
-        wave3.style.fill = randomColor2;
-        wave4.style.fill = randomColor2;
-        displayColor1.style.background = randomColor2;
-        displayColor2.style.background = randomColor2;
-        displayColor3.style.background = randomColor2;
-        displayColor4.style.background = randomColor2;
-        displayColor5.style.background = randomColor2;
+        generateModifyAndPaint();
         topToBottom = true;
     }
 
@@ -216,4 +161,41 @@ function randomColor(opacity) {
     let g = Math.floor(Math.random() * 256); // pick a "green" from 0 - 255
     let b = Math.floor(Math.random() * 256); // pick a "blue" from 0 - 255
     return `rgba(${r},${g},${b},${opacity})`; // RGBA (r, g, b, opacity)
+}
+
+function generateModifyAndPaint() {
+    // Generate colors
+    randomColor1 = Color(randomColor(1)).hsl();
+    randomColor2 = Color(randomColor1)
+        .rotate(90)
+        .hex();
+
+    // Create Shades of randomColor2
+    randomColor2_shade_dark = Color(randomColor2)
+        .darken(0.25)
+        .hex();
+    randomColor2_shade_darker = Color(randomColor2)
+        .darken(0.5)
+        .hex();
+    randomColor2_shade_darkest = Color(randomColor2)
+        .darken(0.75)
+        .hex();
+
+    // Paint the walls
+    document.body.style.background = randomColor1;
+    ball.style.background = randomColor2;
+    wave1.style.fill = randomColor2;
+    wave2.style.fill = randomColor2_shade_dark;
+    wave3.style.fill = randomColor2_shade_darker;
+    wave4.style.fill = randomColor2_shade_darkest;
+    displayColor1.style.background = randomColor1;
+    displayColor1.innerHTML = `<h2>${(randomColor1 = Color(randomColor1).hex())}</h2>`;
+    displayColor2.style.background = randomColor2;
+    displayColor2.innerHTML = `<h2>${randomColor2}</h2>`;
+    displayColor3.style.background = randomColor2_shade_dark;
+    displayColor3.innerHTML = `<h2>${randomColor2_shade_dark}</h2>`;
+    displayColor4.style.background = randomColor2_shade_darker;
+    displayColor4.innerHTML = `<h2>${randomColor2_shade_darker}</h2>`;
+    displayColor5.style.background = randomColor2_shade_darkest;
+    displayColor5.innerHTML = `<h2>${randomColor2_shade_darkest}</h2>`;
 }
