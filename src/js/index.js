@@ -5,12 +5,21 @@ const btnStart = document.getElementById('btnStart');
 const btnStop = document.getElementById('btnStop');
 const container = document.getElementById('container');
 const ball = document.getElementById('ball');
+const message = document.getElementById('message');
 const display = document.getElementById('display');
 const displayColor1 = document.getElementById('display__color1');
 const displayColor2 = document.getElementById('display__color2');
 const displayColor3 = document.getElementById('display__color3');
 const displayColor4 = document.getElementById('display__color4');
 const displayColor5 = document.getElementById('display__color5');
+const displayColor1Value = document.getElementById('display__color1__value');
+const displayColor2Value = document.getElementById('display__color2__value');
+const displayColor3Value = document.getElementById('display__color3__value');
+const displayColor4Value = document.getElementById('display__color4__value');
+const displayColor5Value = document.getElementById('display__color5__value');
+const displayColorValues = Array.prototype.slice.call(
+    document.querySelectorAll('.display__color span')
+);
 
 // Waves
 const wave1 = document.getElementById('wave1');
@@ -42,7 +51,7 @@ let runner = false;
 function init() {
     // ! Event listener
     window.addEventListener('resize', () => {
-        init();
+        measureContainer();
     });
     document.body.onkeydown = e => {
         if (e.keyCode == 32 && runner == false) {
@@ -51,16 +60,14 @@ function init() {
             stopMove();
         }
     };
+    displayColorValues.forEach(displayColorValue => {
+        displayColorValue.addEventListener('click', copyColor);
+    });
     btnStart.addEventListener('click', startMove);
     btnStop.addEventListener('click', stopMove);
 
     // ! Measurements
-    ballWidth = ball.clientWidth;
-    ballHeight = ball.clientHeight;
-    containerEdgeLeft = container.clientLeft;
-    containerEdgeTop = container.clientTop;
-    containerEdgeRight = container.offsetWidth;
-    containerEdgeBottom = container.offsetHeight;
+    measureContainer();
 
     // ! Generate a new color, create shades and paint everything
     generateModifyAndPaint();
@@ -71,21 +78,15 @@ init();
 function startMove() {
     startMoveX();
     startMoveY();
+    showBall();
     runner = true;
-    display.classList.remove('show');
-    display.classList.add('hide');
-    ball.classList.remove('hide');
-    ball.classList.add('show');
 }
 
 function stopMove() {
     stopMoveX();
     stopMoveY();
+    showDisplay();
     runner = false;
-    ball.classList.add('hide');
-    ball.classList.remove('show');
-    display.classList.remove('hide');
-    display.classList.add('show');
 }
 
 function stopMoveX() {
@@ -171,10 +172,6 @@ function generateModifyAndPaint() {
         .rotate(180)
         .hex();
 
-    // ! Define min/max border radius values for the output
-    let minBorderRadius = 25;
-    let maxBorderRadius = 75;
-
     // ! Create Shades of randomColor2
     randomColor2_shade_dark = Color(randomColor2)
         .darken(0.25)
@@ -194,58 +191,76 @@ function generateModifyAndPaint() {
     wave3.style.fill = randomColor2_shade_darker;
     wave4.style.fill = randomColor2_shade_darkest;
     displayColor1.style.background = randomColor1;
-    displayColor1.style.borderRadius = randomBorderRadius(minBorderRadius, maxBorderRadius);
-    displayColor1.innerHTML = `<span>${(randomColor1 = Color(randomColor1).hex())}</span>`;
     displayColor2.style.background = randomColor2;
-    displayColor2.style.borderRadius = randomBorderRadius(minBorderRadius, maxBorderRadius);
-    displayColor2.innerHTML = `<span>${randomColor2}</span>`;
     displayColor3.style.background = randomColor2_shade_dark;
-    displayColor3.style.borderRadius = randomBorderRadius(minBorderRadius, maxBorderRadius);
-    displayColor3.innerHTML = `<span>${randomColor2_shade_dark}</span>`;
     displayColor4.style.background = randomColor2_shade_darker;
-    displayColor4.style.borderRadius = randomBorderRadius(minBorderRadius, maxBorderRadius);
-    displayColor4.innerHTML = `<span>${randomColor2_shade_darker}</span>`;
     displayColor5.style.background = randomColor2_shade_darkest;
-    displayColor5.style.borderRadius = randomBorderRadius(minBorderRadius, maxBorderRadius);
-    displayColor5.innerHTML = `<span>${randomColor2_shade_darkest}</span>`;
+
+    // ! Display color values in the displays
+    displayColor1Value.innerHTML = `${(randomColor1 = Color(randomColor1).hex())}`;
+    displayColor2Value.innerHTML = `${randomColor2}`;
+    displayColor3Value.innerHTML = `${randomColor2_shade_dark}`;
+    displayColor4Value.innerHTML = `${randomColor2_shade_darker}`;
+    displayColor5Value.innerHTML = `${randomColor2_shade_darkest}`;
 }
 
-function copyColor() {
-    // ! Really important is to use the event property to always use
-    // ! the currently targeted box
-    // let currentColorValue = .textContent;
-    // const tempInput = document.createElement('input');
-    // document.body.appendChild(tempInput);
-    // currentColorValue = currentColorValue.toLowerCase();
-    // tempInput.value = currentColorValue;
-    // tempInput.select();
-    // document.execCommand('copy');
-    // document.body.removeChild(tempInput);
+function copyColor(e) {
+    const copiedColor = e.target.innerText;
+    const tempInput = document.createElement('input');
+    document.body.appendChild(tempInput);
+    tempInput.value = copiedColor;
+    tempInput.select();
+    document.execCommand('copy');
+    document.body.removeChild(tempInput);
+    showMessage();
+    message.innerHTML = `<p>Copied <span style="background: ${copiedColor}">${copiedColor}</span> to your clipboard!`;
+    message.classList.add('animated', 'bounceInDown', 'fast');
+    message.addEventListener('animationend', () => {
+        message.classList.remove('animated', 'bounceInDown', 'fast');
+    });
+    setTimeout(showDisplay, 3000);
 }
 
-function randomBorderRadius(min, max) {
-    let borderRadius = `${randomBorderRadiusValue(min, max)}% ${randomBorderRadiusValue(
-        min,
-        max
-    )}% ${randomBorderRadiusValue(min, max)}% ${randomBorderRadiusValue(
-        min,
-        max
-    )}% / ${randomBorderRadiusValue(min, max)}% ${randomBorderRadiusValue(
-        min,
-        max
-    )}% ${randomBorderRadiusValue(min, max)}% ${randomBorderRadiusValue(min, max)}%`;
-    return borderRadius;
+function measureContainer() {
+    ballWidth = ball.clientWidth;
+    ballHeight = ball.clientHeight;
+    containerEdgeLeft = container.clientLeft;
+    containerEdgeTop = container.clientTop;
+    containerEdgeRight = container.offsetWidth;
+    containerEdgeBottom = container.offsetHeight;
 }
 
-function randomBorderRadiusValue(min, max) {
-    let randomBorderRadiusValue = Math.floor(Math.random() * max);
-    if (randomBorderRadiusValue < min) {
-        let diff = min - randomBorderRadiusValue;
-        randomBorderRadiusValue = randomBorderRadiusValue + diff;
-        return randomBorderRadiusValue;
-    } else {
-        return randomBorderRadiusValue;
-    }
+function showDisplay() {
+    // Hide
+    ball.classList.add('hide');
+    ball.classList.remove('show');
+    message.classList.add('hide');
+    message.classList.remove('show');
+    message.innerHTML = '';
+    // Show
+    display.classList.remove('hide');
+    display.classList.add('show');
 }
 
-console.log(randomBorderRadius(40, 55));
+function showBall() {
+    // Hide
+    display.classList.remove('show');
+    display.classList.add('hide');
+    message.classList.remove('show');
+    message.classList.add('hide');
+    message.innerHTML = '';
+    // Show
+    ball.classList.remove('hide');
+    ball.classList.add('show');
+}
+
+function showMessage() {
+    // Hide
+    ball.classList.remove('show');
+    ball.classList.add('hide');
+    display.classList.remove('show');
+    display.classList.add('hide');
+    // Show
+    message.classList.remove('hide');
+    message.classList.add('show');
+}

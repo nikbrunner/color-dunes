@@ -1,6 +1,7 @@
 @import 'base';
 @import 'variables';
 @import 'mixins';
+@import 'keyframes';
 
 #wrapper {
     margin-top: 2rem;
@@ -14,8 +15,11 @@
     background: $color-dark-transparent-high;
     border-radius: 0 0 $border-radius $border-radius;
     margin: 0 auto;
-    box-shadow: 0 1rem 15rem rgba(0, 0, 0, 0.25);
+    box-shadow: 0 1rem 2.5rem rgba(0, 0, 0, 0.25);
     z-index: 50;
+    @media screen and (max-width: 1024px) {
+        width: $container-width--wider;
+    }
 }
 
 #display {
@@ -23,6 +27,7 @@
     position: absolute;
     width: 100%;
     height: 100%;
+    padding: 5%;
     background: $color-dark-transparent-low;
     border-radius: 0 0 $border-radius $border-radius;
     transition: opacity 0.5s;
@@ -30,36 +35,50 @@
     div {
         @include flex(row nowrap, center, center, center);
         background: $color-dark-transparent-low;
-        border-radius: 51% 49% 74% 26% / 57% 57% 43% 43%;
         cursor: pointer;
-        width: 50%;
-        height: 12.5%;
-        margin: 1rem 0;
+        width: 100%;
+        height: 25%;
         font-size: 2rem;
         font-weight: bold;
         transition: all 0.15s;
         &:hover {
-            border-radius: $border-radius !important;
+            box-shadow: 0 0 2.5rem rgba(0, 0, 0, 0.25);
+            z-index: 100;
+            height: 50%;
         }
         span {
             position: relative;
+            padding-bottom: 0.25rem;
+            transition: all 0.15s;
+            &::before {
+                content: '';
+                position: absolute;
+                left: 50%;
+                bottom: 0;
+                width: 100%;
+                height: 2px;
+                background-color: #ffffff;
+                transform-origin: center;
+                transform: translate(-50%, 0) scaleX(0);
+                transition: transform 0.3s ease-in-out;
+            }
+            &:hover::before {
+                transform: translate(-50%, 0) scaleX(1);
+            }
         }
-        span::before {
-            content: '';
-            position: absolute;
-            left: 50%;
-            bottom: 0;
-            width: 100%;
-            height: 2px;
-            background-color: #ffffff;
-            transform-origin: center;
-            transform: translate(-50%, 0) scaleX(0);
-            transition: transform 0.3s ease-in-out;
-        }
+    }
+}
 
-        span:hover::before {
-            transform: translate(-50%, 0) scaleX(1);
-        }
+#message {
+    @include flex(column nowrap, center, center, center);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    padding: 5%;
+    font-size: 2rem;
+    span {
+        padding: 1rem;
+        border-radius: $border-radius;
     }
 }
 
@@ -83,6 +102,9 @@
     flex-flow: row nowrap;
     justify-content: center;
     z-index: 60;
+    @media screen and (max-width: 1024px) {
+        width: $container-width--wider;
+    }
 }
 
 button {
@@ -90,12 +112,15 @@ button {
     font-size: 2rem;
     margin: 0 1rem;
     background: transparent;
-    color: slategray;
+    color: white;
     border: 0;
     cursor: pointer;
     position: relative;
     opacity: 0.75;
     z-index: 61;
+    &::-moz-focus-inner {
+        border: 0;
+    }
 }
 
 button:hover {
