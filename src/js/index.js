@@ -40,7 +40,7 @@ let topToBottom = true;
 let runner = false;
 
 function init() {
-    // Event listener
+    // ! Event listener
     window.addEventListener('resize', () => {
         init();
     });
@@ -54,7 +54,7 @@ function init() {
     btnStart.addEventListener('click', startMove);
     btnStop.addEventListener('click', stopMove);
 
-    // Measurements
+    // ! Measurements
     ballWidth = ball.clientWidth;
     ballHeight = ball.clientHeight;
     containerEdgeLeft = container.clientLeft;
@@ -62,6 +62,7 @@ function init() {
     containerEdgeRight = container.offsetWidth;
     containerEdgeBottom = container.offsetHeight;
 
+    // ! Generate a new color, create shades and paint everything
     generateModifyAndPaint();
 }
 
@@ -110,11 +111,11 @@ function moveBallX() {
     ballEdgeRight = currPosX + ballWidth;
 
     if (ballEdgeRight >= containerEdgeRight) {
-        generateModifyAndPaint();
         leftToRight = false;
-    } else if (ballEdgeLeft <= containerEdgeLeft) {
         generateModifyAndPaint();
+    } else if (ballEdgeLeft <= containerEdgeLeft) {
         leftToRight = true;
+        generateModifyAndPaint();
     }
 
     leftToRight ? move('toRight') : move('toLeft');
@@ -125,11 +126,11 @@ function moveBallY() {
     ballEdgeBottom = currPosY + ballHeight;
 
     if (ballEdgeBottom >= containerEdgeBottom) {
-        generateModifyAndPaint();
         topToBottom = false;
-    } else if (ballEdgeTop <= containerEdgeTop) {
         generateModifyAndPaint();
+    } else if (ballEdgeTop <= containerEdgeTop) {
         topToBottom = true;
+        generateModifyAndPaint();
     }
 
     topToBottom ? move('toBottom') : move('toTop');
@@ -164,13 +165,17 @@ function randomColor(opacity) {
 }
 
 function generateModifyAndPaint() {
-    // Generate colors
+    // ! Generate colors
     randomColor1 = Color(randomColor(1)).hsl();
     randomColor2 = Color(randomColor1)
-        .rotate(90)
+        .rotate(180)
         .hex();
 
-    // Create Shades of randomColor2
+    // ! Define min/max border radius values for the output
+    let minBorderRadius = 25;
+    let maxBorderRadius = 75;
+
+    // ! Create Shades of randomColor2
     randomColor2_shade_dark = Color(randomColor2)
         .darken(0.25)
         .hex();
@@ -181,7 +186,7 @@ function generateModifyAndPaint() {
         .darken(0.75)
         .hex();
 
-    // Paint the walls
+    // ! Paint the walls
     document.body.style.background = randomColor1;
     ball.style.background = randomColor2;
     wave1.style.fill = randomColor2;
@@ -189,13 +194,58 @@ function generateModifyAndPaint() {
     wave3.style.fill = randomColor2_shade_darker;
     wave4.style.fill = randomColor2_shade_darkest;
     displayColor1.style.background = randomColor1;
-    displayColor1.innerHTML = `<h2>${(randomColor1 = Color(randomColor1).hex())}</h2>`;
+    displayColor1.style.borderRadius = randomBorderRadius(minBorderRadius, maxBorderRadius);
+    displayColor1.innerHTML = `<span>${(randomColor1 = Color(randomColor1).hex())}</span>`;
     displayColor2.style.background = randomColor2;
-    displayColor2.innerHTML = `<h2>${randomColor2}</h2>`;
+    displayColor2.style.borderRadius = randomBorderRadius(minBorderRadius, maxBorderRadius);
+    displayColor2.innerHTML = `<span>${randomColor2}</span>`;
     displayColor3.style.background = randomColor2_shade_dark;
-    displayColor3.innerHTML = `<h2>${randomColor2_shade_dark}</h2>`;
+    displayColor3.style.borderRadius = randomBorderRadius(minBorderRadius, maxBorderRadius);
+    displayColor3.innerHTML = `<span>${randomColor2_shade_dark}</span>`;
     displayColor4.style.background = randomColor2_shade_darker;
-    displayColor4.innerHTML = `<h2>${randomColor2_shade_darker}</h2>`;
+    displayColor4.style.borderRadius = randomBorderRadius(minBorderRadius, maxBorderRadius);
+    displayColor4.innerHTML = `<span>${randomColor2_shade_darker}</span>`;
     displayColor5.style.background = randomColor2_shade_darkest;
-    displayColor5.innerHTML = `<h2>${randomColor2_shade_darkest}</h2>`;
+    displayColor5.style.borderRadius = randomBorderRadius(minBorderRadius, maxBorderRadius);
+    displayColor5.innerHTML = `<span>${randomColor2_shade_darkest}</span>`;
 }
+
+function copyColor() {
+    // ! Really important is to use the event property to always use
+    // ! the currently targeted box
+    // let currentColorValue = .textContent;
+    // const tempInput = document.createElement('input');
+    // document.body.appendChild(tempInput);
+    // currentColorValue = currentColorValue.toLowerCase();
+    // tempInput.value = currentColorValue;
+    // tempInput.select();
+    // document.execCommand('copy');
+    // document.body.removeChild(tempInput);
+}
+
+function randomBorderRadius(min, max) {
+    let borderRadius = `${randomBorderRadiusValue(min, max)}% ${randomBorderRadiusValue(
+        min,
+        max
+    )}% ${randomBorderRadiusValue(min, max)}% ${randomBorderRadiusValue(
+        min,
+        max
+    )}% / ${randomBorderRadiusValue(min, max)}% ${randomBorderRadiusValue(
+        min,
+        max
+    )}% ${randomBorderRadiusValue(min, max)}% ${randomBorderRadiusValue(min, max)}%`;
+    return borderRadius;
+}
+
+function randomBorderRadiusValue(min, max) {
+    let randomBorderRadiusValue = Math.floor(Math.random() * max);
+    if (randomBorderRadiusValue < min) {
+        let diff = min - randomBorderRadiusValue;
+        randomBorderRadiusValue = randomBorderRadiusValue + diff;
+        return randomBorderRadiusValue;
+    } else {
+        return randomBorderRadiusValue;
+    }
+}
+
+console.log(randomBorderRadius(40, 55));
