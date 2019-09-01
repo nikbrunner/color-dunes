@@ -8,7 +8,59 @@
     height: 100vh;
 }
 
+.header {
+    @include grid(1fr 1fr, none, none, 0);
+    width: $container-width;
+    margin: 0 auto;
+    padding: 0 2.5rem;
+    background: $color-dark-transparent-high;
+    border-radius: $border-radius $border-radius 0 0;
+    @media screen and (max-width: 1024px) {
+        width: $container-width--wider;
+    }
+    &__logo {
+        @include flex(row nowrap, flex-start, center, center);
+
+        h1 {
+            color: white;
+            font-size: 2rem;
+            font-family: 'Pacifico', sans-serif;
+            -webkit-background-clip: text !important;
+            -webkit-text-fill-color: transparent !important;
+        }
+    }
+    &__buttons {
+        @include flex(row nowrap, flex-end, center, center);
+        z-index: 60;
+        button {
+            height: 4rem;
+            font-size: 2rem;
+            margin: 0 1rem;
+            background: transparent;
+            color: white;
+            border: 0;
+            cursor: pointer;
+            position: relative;
+            opacity: 0.75;
+            z-index: 61;
+            &::-moz-focus-inner {
+                border: 0;
+            }
+            &:last-of-type {
+                margin-right: 0;
+            }
+            &:hover {
+                opacity: 1;
+            }
+            &:focus {
+                outline: none;
+            }
+        }
+    }
+}
+
 #container {
+    @include grid(1fr, 0, 90% 10%, 0);
     width: $container-width;
     height: 80vh;
     position: relative;
@@ -26,23 +78,24 @@
     @include flex(column nowrap, center, center, center);
     position: absolute;
     width: 100%;
-    height: 100%;
-    padding: 5%;
+    height: 90%;
+    padding: 0;
     background: $color-dark-transparent-low;
     border-radius: 0 0 $border-radius $border-radius;
     transition: opacity 0.5s;
-    z-index: 99;
+    z-index: 100;
     div {
         @include flex(row nowrap, center, center, center);
         background: $color-dark-transparent-low;
         cursor: pointer;
         width: 100%;
         height: 25%;
+        font-family: 'Ubuntu Mono', monospace;
         font-size: 2rem;
         font-weight: bold;
         transition: all 0.15s;
         &:hover {
-            box-shadow: 0 0 2.5rem rgba(0, 0, 0, 0.25);
+            filter: drop-shadow(0 0 3.5rem rgba(0, 0, 0, 0.25));
             z-index: 100;
             height: 50%;
         }
@@ -71,13 +124,20 @@
 
 #message {
     @include flex(column nowrap, center, center, center);
+    font-family: 'Pacifico', sans-serif;
+    text-shadow: 0 0.25rem 1rem rgba(0, 0, 0, 0.25);
     position: absolute;
+    top: 0;
     width: 100%;
-    height: 100%;
-    padding: 5%;
+    height: 90%;
+    padding: 0;
     font-size: 2rem;
+    z-index: 90;
     span {
+        filter: drop-shadow(0 0.25rem 1rem rgba(0, 0, 0, 0.25));
+        font-family: 'Ubuntu Mono', monospace;
         padding: 1rem;
+        margin: 0 0.5rem;
         border-radius: $border-radius;
     }
 }
@@ -92,43 +152,16 @@
     z-index: 55;
 }
 
-.buttons {
-    width: $container-width;
-    margin: 0 auto;
-    // background: $color-dark;
-    background: $color-dark-transparent-high;
-    border-radius: $border-radius $border-radius 0 0;
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: center;
-    z-index: 60;
-    @media screen and (max-width: 1024px) {
-        width: $container-width--wider;
-    }
-}
-
-button {
-    height: 4rem;
-    font-size: 2rem;
-    margin: 0 1rem;
-    background: transparent;
-    color: white;
-    border: 0;
-    cursor: pointer;
+#footer {
+    @include flex(row nowrap, center, center, center);
     position: relative;
-    opacity: 0.75;
-    z-index: 61;
-    &::-moz-focus-inner {
-        border: 0;
+    z-index: 110;
+    background: $color-dark-transparent-high;
+    border-radius: 0 0 $border-radius $border-radius;
+    transition: all 1s;
+    span {
+        margin: 0 1rem;
     }
-}
-
-button:hover {
-    opacity: 1;
-}
-
-button:focus {
-    outline: none;
 }
 
 svg {

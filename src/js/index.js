@@ -1,6 +1,7 @@
 var Color = require('color');
 
 // UI Elements
+const logo = document.getElementById('logo');
 const btnStart = document.getElementById('btnStart');
 const btnStop = document.getElementById('btnStop');
 const container = document.getElementById('container');
@@ -20,6 +21,7 @@ const displayColor5Value = document.getElementById('display__color5__value');
 const displayColorValues = Array.prototype.slice.call(
     document.querySelectorAll('.display__color span')
 );
+const footer = document.getElementById('footer');
 
 // Waves
 const wave1 = document.getElementById('wave1');
@@ -39,6 +41,7 @@ let containerEdgeBottom;
 let ballEdgeLeft, ballEdgeTop, ballEdgeRight, ballEdgeBottom;
 let randomColor1, randomColor2;
 let randomColor2_shade_dark, randomColor2_shade_darker, randomColor2_shade_darkest;
+let logoColor1, logoColor2;
 let steps = 3;
 let currPosX = 0;
 let currPosY = 0;
@@ -182,9 +185,15 @@ function generateModifyAndPaint() {
     randomColor2_shade_darkest = Color(randomColor2)
         .darken(0.75)
         .hex();
+    logoColor1 = Color(randomColor2).lighten(0.25);
+    logoColor2 = randomColor2;
 
     // ! Paint the walls
     document.body.style.background = randomColor1;
+    logo.style.background = `-webkit-linear-gradient(360deg, ${logoColor1}, ${logoColor2})`;
+    // logo.style.color = `${randomColor2}`;
+    btnStart.style.color = randomColor1;
+    btnStop.style.color = randomColor2;
     ball.style.background = randomColor2;
     wave1.style.fill = randomColor2;
     wave2.style.fill = randomColor2_shade_dark;
@@ -234,9 +243,13 @@ function showDisplay() {
     // Hide
     ball.classList.add('hide');
     ball.classList.remove('show');
+    footer.classList.add('show');
+    footer.classList.remove('hide');
     message.classList.add('hide');
     message.classList.remove('show');
     message.innerHTML = '';
+    message.style.zIndex = '90';
+
     // Show
     display.classList.remove('hide');
     display.classList.add('show');
@@ -246,9 +259,12 @@ function showBall() {
     // Hide
     display.classList.remove('show');
     display.classList.add('hide');
+    footer.classList.add('hide');
+    footer.classList.remove('show');
     message.classList.remove('show');
     message.classList.add('hide');
     message.innerHTML = '';
+    message.style.zIndex = '90';
     // Show
     ball.classList.remove('hide');
     ball.classList.add('show');
@@ -258,9 +274,13 @@ function showMessage() {
     // Hide
     ball.classList.remove('show');
     ball.classList.add('hide');
+    footer.classList.add('hide');
+    footer.classList.remove('show');
     display.classList.remove('show');
     display.classList.add('hide');
+
     // Show
     message.classList.remove('hide');
     message.classList.add('show');
+    message.style.zIndex = '110';
 }

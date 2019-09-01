@@ -12,6 +12,12 @@
             integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
             crossorigin="anonymous"
         />
+
+        <link
+            href="https://fonts.googleapis.com/css?family=Pacifico|Ubuntu+Mono:700&display=swap"
+            rel="stylesheet"
+        />
+
         <link rel="stylesheet" href="./styles/styles.scss" />
         <title>Color Dunes</title>
     </head>
@@ -51,38 +57,64 @@
         </svg>
 
         <main id="wrapper">
-            <header class="buttons">
-                <button id="btnStart">
-                    <i class="fas fa-play"></i>
-                </button>
-                <button id="btnStop">
-                    <i class="fas fa-stop"></i>
-                </button>
+            <header class="header">
+                <div class="header__logo">
+                    <h1 id="logo">Color Dunes</h1>
+                </div>
+                <div class="header__buttons">
+                    <button id="btnStart">
+                        <i class="fas fa-play"></i>
+                    </button>
+                    <button id="btnStop">
+                        <i class="fas fa-stop"></i>
+                    </button>
+                </div>
             </header>
 
             <div id="container">
-                <div id="display" class="hide">
-                    <div class="display__color" id="display__color1">
-                        <span id="display__color1__value"></span>
+                <div class="content">
+                    <div id="display" class="hide">
+                        <div class="display__color" id="display__color1">
+                            <span id="display__color1__value"></span>
+                        </div>
+                        <div class="display__color" id="display__color2">
+                            <span id="display__color2__value"></span>
+                        </div>
+                        <div class="display__color" id="display__color3">
+                            <span id="display__color3__value"></span>
+                        </div>
+                        <div class="display__color" id="display__color4">
+                            <span id="display__color4__value"></span>
+                        </div>
+                        <div class="display__color" id="display__color5">
+                            <span id="display__color5__value"></span>
+                        </div>
                     </div>
-                    <div class="display__color" id="display__color2">
-                        <span id="display__color2__value"></span>
-                    </div>
-                    <div class="display__color" id="display__color3">
-                        <span id="display__color3__value"></span>
-                    </div>
-                    <div class="display__color" id="display__color4">
-                        <span id="display__color4__value"></span>
-                    </div>
-                    <div class="display__color" id="display__color5">
-                        <span id="display__color5__value"></span>
-                    </div>
+                    <div id="message" class="hide"></div>
+                    <div id="ball"></div>
                 </div>
-                <div id="message" class="hide"></div>
-                <div id="ball"></div>
+                <footer id="footer" class="hide">
+                    <a
+                        id="github-link"
+                        class="github-button"
+                        href="https://github.com/nikbrunner"
+                        data-size="large"
+                        aria-label="Follow @nikbrunner on GitHub"
+                        >Follow @nibru</a
+                    >
+                    <a
+                        class="github-button"
+                        href="https://github.com/nikbrunner/color-dunes/"
+                        data-icon="octicon-eye"
+                        data-size="large"
+                        aria-label="Watch nikbrunner/color-dunes on GitHub"
+                        >Watch</a
+                    >
+                </footer>
             </div>
         </main>
 
         <script src="./js/index.js"></script>
+        <script async defer src="https://buttons.github.io/buttons.js"></script>
     </body>
 </html>
