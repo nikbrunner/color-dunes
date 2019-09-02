@@ -148,7 +148,7 @@
 #message {
     @include flex(column nowrap, center, center, center);
     font-family: 'Pacifico', sans-serif;
-    text-shadow: 0 0.25rem 1rem rgba(0, 0, 0, 0.25);
+    text-shadow: 0 0.075rem rgba(0, 0, 0, 0.5);
     position: absolute;
     top: 0;
     width: 100%;

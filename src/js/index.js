@@ -206,8 +206,8 @@ function generateModifyAndPaint() {
     randomColor2_shade_darkest = Color(randomColor2)
         .darken(0.75)
         .hex();
-    logoColor1 = randomColor2_shade_darker;
-    logoColor2 = randomColor2_shade_dark;
+    logoColor1 = randomColor2_shade_dark;
+    logoColor2 = randomColor2_shade_darker;
     footerLinkColor = Color(randomColor2).lighten(0.25);
 
     // ! Paint the walls

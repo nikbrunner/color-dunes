@@ -18,9 +18,16 @@ My goal is combine something like a screensaver, something beautiful to look at 
 -   [x] ~~_Implement Display for the color values_~~ [2019-09-01]
 -   [x] ~~_Generate HSL Value as random color starting point to be able to control saturation and lightness_~~ [2019-09-02]
 -   [ ] Check consistency and Refactor & Optimize
+-   [ ] Remove eventlisteners on message display
+-   [ ] Local fonts
 -   [ ] Prefixes
 -   [ ] Responsiveness
+-   [ ] Favicon (2 Dots with 180deg value)
 -   [ ] Update Readme
 -   [ ] Deploy
     -   [ ] Netlify
     -   [ ] GitHub
+
+## Future
+
+-   [ ] Inputs or Checkboxes for Tri Color, Lightness and saturation
