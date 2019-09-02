@@ -22,6 +22,7 @@ const displayColorValues = Array.prototype.slice.call(
     document.querySelectorAll('.display__color span')
 );
 const footer = document.getElementById('footer');
+const githubLinks = Array.prototype.slice.call(document.getElementsByClassName('github-link'));
 
 // Waves
 const wave1 = document.getElementById('wave1');
@@ -195,6 +196,9 @@ function generateModifyAndPaint() {
     btnStart.style.color = randomColor1;
     btnStop.style.color = randomColor2;
     ball.style.background = randomColor2;
+    githubLinks.forEach(githubLink => {
+        githubLink.style.color = randomColor1;
+    });
     wave1.style.fill = randomColor2;
     wave2.style.fill = randomColor2_shade_dark;
     wave3.style.fill = randomColor2_shade_darker;

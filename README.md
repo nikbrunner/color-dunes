@@ -23,3 +23,10 @@ My goal is combine something like a screensaver, something beautiful to look at 
 -   [x] ~~_Implement Display for the color values_~~ [2019-09-01]
     -   Should appear on top of the container
     -   When stop is pressed
+-   [ ] Check consistency and Refactor & Optimize
+-   [ ] Prefixes
+-   [ ] Responsiveness
+-   [ ] Update Readme
+-   [ ] Deploy
+    -   [ ] Netlify
+    -   [ ] GitHub
