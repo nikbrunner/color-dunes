@@ -48,13 +48,13 @@ const wave4 = document.getElementById('wave4');
 // Variables | Measurements
 let ballWidth;
 let ballHeight;
+let ballEdgeLeft, ballEdgeTop, ballEdgeRight, ballEdgeBottom;
 let containerEdgeLeft;
 let containerEdgeTop;
 let containerEdgeRight;
 let containerEdgeBottom;
 
 // Variables | Initial Declarations
-let ballEdgeLeft, ballEdgeTop, ballEdgeRight, ballEdgeBottom;
 let randomColor1,
     randomColor2,
     randomColor2_shade_dark,
@@ -63,7 +63,7 @@ let randomColor1,
 let logoColor1, logoColor2, logoColor3;
 let footerLinkColor;
 
-// Variables | Values and Switches
+// Variables | Initial Values and Switches
 let steps = 3;
 let currPosX = 0;
 let currPosY = 0;
@@ -71,7 +71,7 @@ let IntervalX = 0;
 let IntervalY = 0;
 let leftToRight = true;
 let topToBottom = true;
-let runner = false;
+let ballIsMoving = false;
 
 // ! Initialize Function
 function init() {
@@ -80,7 +80,7 @@ function init() {
         measureContainer();
     });
     document.body.onkeydown = e => {
-        if (e.keyCode == 32 && runner == false) {
+        if (e.keyCode == 32 && ballIsMoving == false) {
             startMove();
         } else {
             stopMove();
@@ -105,14 +105,14 @@ function startMove() {
     startMoveX();
     startMoveY();
     showBall();
-    runner = true;
+    ballIsMoving = true;
 }
 
 function stopMove() {
     stopMoveX();
     stopMoveY();
     showDisplay();
-    runner = false;
+    ballIsMoving = false;
 }
 
 function stopMoveX() {
@@ -215,13 +215,13 @@ function randomColorHSL(
 
 function generateModifyAndPaint() {
     // ! Generate colors
-    randomColor1 = randomColorHSL(15, 50, 65, 85);
+    randomColor1 = randomColorHSL(35, 100, 50, 85);
     randomColor2 = ColorJS(randomColor1)
         .rotate(180)
         .hex();
 
     // ! Create Shades of randomColor2
-    // Palette
+    // Shades | Palette
     randomColor2_shade_dark = ColorJS(randomColor2)
         .darken(0.25)
         .hex();
@@ -231,13 +231,13 @@ function generateModifyAndPaint() {
     randomColor2_shade_darkest = ColorJS(randomColor2)
         .darken(0.75)
         .hex();
-    // Logo
+    // Shades | Logo
     logoColor1 = randomColor2_shade_dark;
     logoColor2 = ColorJS(logoColor1)
         .rotate(15)
         .lighten(0.25);
     logoColor3 = ColorJS(randomColor1).lighten(0.3);
-    // Footer
+    // Shades | Footer
     footerLinkColor = ColorJS(randomColor2).lighten(0.25);
 
     // ! Paint the walls
@@ -322,6 +322,7 @@ function showBall() {
     message.classList.add('hide');
     message.innerHTML = '';
     message.style.zIndex = '90';
+
     // Show
     ball.classList.remove('hide');
     ball.classList.add('show');
