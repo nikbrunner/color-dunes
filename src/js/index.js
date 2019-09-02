@@ -1,3 +1,4 @@
+// Import 'Color' Package
 var Color = require('color');
 
 // UI Elements
@@ -43,6 +44,7 @@ let ballEdgeLeft, ballEdgeTop, ballEdgeRight, ballEdgeBottom;
 let randomColor1, randomColor2;
 let randomColor2_shade_dark, randomColor2_shade_darker, randomColor2_shade_darkest;
 let logoColor1, logoColor2;
+let footerLinkColor;
 let steps = 3;
 let currPosX = 0;
 let currPosY = 0;
@@ -162,16 +164,34 @@ function move(dir) {
     }
 }
 
-function randomColor(opacity) {
-    let r = Math.floor(Math.random() * 256); // pick a "red" from 0 - 255
-    let g = Math.floor(Math.random() * 256); // pick a "green" from 0 - 255
-    let b = Math.floor(Math.random() * 256); // pick a "blue" from 0 - 255
-    return `rgba(${r},${g},${b},${opacity})`; // RGBA (r, g, b, opacity)
+function randomColorHSL(saturationMin, saturationMax, lightnessMin, lightnessMax) {
+    // hsl(hue, saturation, lightness)
+    // hue 	        Defines a degree on the color wheel (from 0 to 360) - 0 (or 360) is red, 120 is green, 240 is blue
+    // saturation 	Defines the saturation; 0% is a shade of gray and 100% is the full color (full saturation)
+    // lightness 	  Defines the lightness; 0% is black, 50% is normal, and 100% is white
+
+    // ! Generate Hue
+    let hue = Math.floor(Math.random() * 360);
+
+    // ! Generate Saturation
+    let saturation = Math.floor(Math.random() * saturationMax);
+    if (saturation < saturationMin) {
+        saturation += saturationMin;
+    }
+
+    // ! Generate Lightness
+    let lightness = Math.floor(Math.random() * lightnessMax);
+    if (lightness < lightnessMin) {
+        lightness += lightnessMin;
+    }
+
+    return `hsl(${hue}, ${saturation}%, ${lightness}%)`;
 }
 
 function generateModifyAndPaint() {
     // ! Generate colors
-    randomColor1 = Color(randomColor(1)).hsl();
+    randomColor1 = randomColorHSL(50, 100, 50, 100);
+
     randomColor2 = Color(randomColor1)
         .rotate(180)
         .hex();
@@ -186,18 +206,19 @@ function generateModifyAndPaint() {
     randomColor2_shade_darkest = Color(randomColor2)
         .darken(0.75)
         .hex();
-    logoColor1 = Color(randomColor2).lighten(0.25);
-    logoColor2 = randomColor2;
+    logoColor1 = randomColor2_shade_darker;
+    logoColor2 = randomColor2_shade_dark;
+    footerLinkColor = Color(randomColor2).lighten(0.25);
 
     // ! Paint the walls
     document.body.style.background = randomColor1;
     logo.style.background = `-webkit-linear-gradient(360deg, ${logoColor1}, ${logoColor2})`;
-    // logo.style.color = `${randomColor2}`;
+    // logo.style.webkitTextStroke = `0.1rem ${randomColor2}`;
     btnStart.style.color = randomColor1;
     btnStop.style.color = randomColor2;
     ball.style.background = randomColor2;
     githubLinks.forEach(githubLink => {
-        githubLink.style.color = randomColor1;
+        githubLink.style.color = footerLinkColor;
     });
     wave1.style.fill = randomColor2;
     wave2.style.fill = randomColor2_shade_dark;

@@ -37,6 +37,8 @@
             background-clip: text !important;
             -webkit-background-clip: text !important;
             -webkit-text-fill-color: transparent !important;
+            text-shadow: 0 0.2rem 0 white;
+            // letter-spacing: 0.2rem;
         }
     }
     &__buttons {
@@ -161,6 +163,9 @@
         margin: 0 0.5rem;
         border-radius: $border-radius;
     }
+    @media screen and (max-width: 768px) {
+        font-size: 1rem;
+    }
 }
 
 #ball {
@@ -202,6 +207,7 @@
         bottom: 0;
         width: 100vw;
         height: 10vh;
+        opacity: 1 !important;
     }
 }
 
