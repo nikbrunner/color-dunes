@@ -1,37 +1,51 @@
-// Import 'Color' Package
-var Color = require('color');
+// todo function to add eventlisteners
+// todo remove eventlisteners when message is shown
+// todo input fields for lightness and saturation (3 Presets)
 
-// UI Elements
-const logo = document.getElementById('logo');
+// ! Import NPM 'ColorJS' Package
+import ColorJS from 'color';
+
+// ! UI Elements Constants
+// UI | Header
+const logo = document.querySelector('.brand__logo');
 const btnStart = document.getElementById('btnStart');
 const btnStop = document.getElementById('btnStop');
-const container = document.getElementById('container');
-const ball = document.getElementById('ball');
-const message = document.getElementById('message');
-const display = document.getElementById('display');
-const displayColor1 = document.getElementById('display__color1');
-const displayColor2 = document.getElementById('display__color2');
-const displayColor3 = document.getElementById('display__color3');
-const displayColor4 = document.getElementById('display__color4');
-const displayColor5 = document.getElementById('display__color5');
-const displayColor1Value = document.getElementById('display__color1__value');
-const displayColor2Value = document.getElementById('display__color2__value');
-const displayColor3Value = document.getElementById('display__color3__value');
-const displayColor4Value = document.getElementById('display__color4__value');
-const displayColor5Value = document.getElementById('display__color5__value');
-const displayColorValues = Array.prototype.slice.call(
-    document.querySelectorAll('.display__color span')
-);
-const footer = document.getElementById('footer');
-const githubLinks = Array.prototype.slice.call(document.getElementsByClassName('github-link'));
 
-// Waves
+// UI | Container
+const container = document.querySelector('.container');
+const ball = document.querySelector('.ball');
+const message = document.querySelector('.message');
+
+// UI | Palette
+const palette = document.querySelector('.palette');
+const paletteColor1 = document.getElementById('palette__color1');
+const paletteColor2 = document.getElementById('palette__color2');
+const paletteColor3 = document.getElementById('palette__color3');
+const paletteColor4 = document.getElementById('palette__color4');
+const paletteColor5 = document.getElementById('palette__color5');
+const paletteColor1Value = document.getElementById('palette__color1__value');
+const paletteColor2Value = document.getElementById('palette__color2__value');
+const paletteColor3Value = document.getElementById('palette__color3__value');
+const paletteColor4Value = document.getElementById('palette__color4__value');
+const paletteColor5Value = document.getElementById('palette__color5__value');
+const paletteColorValues = Array.prototype.slice.call(
+    document.querySelectorAll('.palette__color__value')
+);
+
+// UI | Footer
+const footer = document.querySelector('footer');
+const footerLink = Array.prototype.slice.call(
+    document.getElementsByClassName('footer__link')
+);
+
+// UI | Waves
 const wave1 = document.getElementById('wave1');
 const wave2 = document.getElementById('wave2');
 const wave3 = document.getElementById('wave3');
 const wave4 = document.getElementById('wave4');
 
-// Measurements
+// ! Initialize Variables
+// Variables | Measurements
 let ballWidth;
 let ballHeight;
 let containerEdgeLeft;
@@ -39,12 +53,17 @@ let containerEdgeTop;
 let containerEdgeRight;
 let containerEdgeBottom;
 
-// Variables
+// Variables | Initial Declarations
 let ballEdgeLeft, ballEdgeTop, ballEdgeRight, ballEdgeBottom;
-let randomColor1, randomColor2;
-let randomColor2_shade_dark, randomColor2_shade_darker, randomColor2_shade_darkest;
-let logoColor1, logoColor2;
+let randomColor1,
+    randomColor2,
+    randomColor2_shade_dark,
+    randomColor2_shade_darker,
+    randomColor2_shade_darkest;
+let logoColor1, logoColor2, logoColor3;
 let footerLinkColor;
+
+// Variables | Values and Switches
 let steps = 3;
 let currPosX = 0;
 let currPosY = 0;
@@ -54,8 +73,9 @@ let leftToRight = true;
 let topToBottom = true;
 let runner = false;
 
+// ! Initialize Function
 function init() {
-    // ! Event listener
+    // init() | Event listener
     window.addEventListener('resize', () => {
         measureContainer();
     });
@@ -66,16 +86,16 @@ function init() {
             stopMove();
         }
     };
-    displayColorValues.forEach(displayColorValue => {
-        displayColorValue.addEventListener('click', copyColor);
+    paletteColorValues.forEach(paletteColorValue => {
+        paletteColorValue.addEventListener('click', copyColor);
     });
     btnStart.addEventListener('click', startMove);
     btnStop.addEventListener('click', stopMove);
 
-    // ! Measurements
+    // init() | Measurements
     measureContainer();
 
-    // ! Generate a new color, create shades and paint everything
+    // init() | Generate a new color, create shades and paint everything
     generateModifyAndPaint();
 }
 
@@ -164,11 +184,16 @@ function move(dir) {
     }
 }
 
-function randomColorHSL(saturationMin, saturationMax, lightnessMin, lightnessMax) {
-    // hsl(hue, saturation, lightness)
-    // hue 	        Defines a degree on the color wheel (from 0 to 360) - 0 (or 360) is red, 120 is green, 240 is blue
-    // saturation 	Defines the saturation; 0% is a shade of gray and 100% is the full color (full saturation)
-    // lightness 	  Defines the lightness; 0% is black, 50% is normal, and 100% is white
+function randomColorHSL(
+    saturationMin,
+    saturationMax,
+    lightnessMin,
+    lightnessMax
+) {
+    // ! hsl(hue, saturation, lightness)
+    //   hue 	            Defines a degree on the color wheel (from 0 to 360) - 0 (or 360) is red, 120 is green, 240 is blue
+    //   saturation 	    Defines the saturation; 0% is a shade of gray and 100% is the full color (full saturation)
+    //   lightness 	        Defines the lightness; 0% is black, 50% is normal, and 100% is white
 
     // ! Generate Hue
     let hue = Math.floor(Math.random() * 360);
@@ -190,52 +215,59 @@ function randomColorHSL(saturationMin, saturationMax, lightnessMin, lightnessMax
 
 function generateModifyAndPaint() {
     // ! Generate colors
-    randomColor1 = randomColorHSL(50, 100, 50, 100);
-
-    randomColor2 = Color(randomColor1)
+    randomColor1 = randomColorHSL(15, 50, 65, 85);
+    randomColor2 = ColorJS(randomColor1)
         .rotate(180)
         .hex();
 
     // ! Create Shades of randomColor2
-    randomColor2_shade_dark = Color(randomColor2)
+    // Palette
+    randomColor2_shade_dark = ColorJS(randomColor2)
         .darken(0.25)
         .hex();
-    randomColor2_shade_darker = Color(randomColor2)
+    randomColor2_shade_darker = ColorJS(randomColor2)
         .darken(0.5)
         .hex();
-    randomColor2_shade_darkest = Color(randomColor2)
+    randomColor2_shade_darkest = ColorJS(randomColor2)
         .darken(0.75)
         .hex();
+    // Logo
     logoColor1 = randomColor2_shade_dark;
-    logoColor2 = randomColor2_shade_darker;
-    footerLinkColor = Color(randomColor2).lighten(0.25);
+    logoColor2 = ColorJS(logoColor1)
+        .rotate(15)
+        .lighten(0.25);
+    logoColor3 = ColorJS(randomColor1).lighten(0.3);
+    // Footer
+    footerLinkColor = ColorJS(randomColor2).lighten(0.25);
 
     // ! Paint the walls
     document.body.style.background = randomColor1;
     logo.style.background = `-webkit-linear-gradient(360deg, ${logoColor1}, ${logoColor2})`;
-    // logo.style.webkitTextStroke = `0.1rem ${randomColor2}`;
+    logo.style.textShadow = `0 0.2rem 0 ${logoColor3}`;
     btnStart.style.color = randomColor1;
     btnStop.style.color = randomColor2;
     ball.style.background = randomColor2;
-    githubLinks.forEach(githubLink => {
-        githubLink.style.color = footerLinkColor;
+    footerLink.forEach(footerLink => {
+        footerLink.style.color = footerLinkColor;
     });
     wave1.style.fill = randomColor2;
     wave2.style.fill = randomColor2_shade_dark;
     wave3.style.fill = randomColor2_shade_darker;
     wave4.style.fill = randomColor2_shade_darkest;
-    displayColor1.style.background = randomColor1;
-    displayColor2.style.background = randomColor2;
-    displayColor3.style.background = randomColor2_shade_dark;
-    displayColor4.style.background = randomColor2_shade_darker;
-    displayColor5.style.background = randomColor2_shade_darkest;
+    paletteColor1.style.background = randomColor1;
+    paletteColor2.style.background = randomColor2;
+    paletteColor3.style.background = randomColor2_shade_dark;
+    paletteColor4.style.background = randomColor2_shade_darker;
+    paletteColor5.style.background = randomColor2_shade_darkest;
 
     // ! Display color values in the displays
-    displayColor1Value.innerHTML = `${(randomColor1 = Color(randomColor1).hex())}`;
-    displayColor2Value.innerHTML = `${randomColor2}`;
-    displayColor3Value.innerHTML = `${randomColor2_shade_dark}`;
-    displayColor4Value.innerHTML = `${randomColor2_shade_darker}`;
-    displayColor5Value.innerHTML = `${randomColor2_shade_darkest}`;
+    paletteColor1Value.innerHTML = `${(randomColor1 = ColorJS(
+        randomColor1
+    ).hex())}`;
+    paletteColor2Value.innerHTML = `${randomColor2}`;
+    paletteColor3Value.innerHTML = `${randomColor2_shade_dark}`;
+    paletteColor4Value.innerHTML = `${randomColor2_shade_darker}`;
+    paletteColor5Value.innerHTML = `${randomColor2_shade_darkest}`;
 }
 
 function copyColor(e) {
@@ -247,7 +279,7 @@ function copyColor(e) {
     document.execCommand('copy');
     document.body.removeChild(tempInput);
     showMessage();
-    message.innerHTML = `<p>Copied <span style="background: ${copiedColor}">${copiedColor}</span> to your clipboard!`;
+    message.innerHTML = `<p class="message__text">Copied <span class="message__color" style="background: ${copiedColor}">${copiedColor}</span> to your clipboard!`;
     message.classList.add('animated', 'bounceInDown', 'fast');
     message.addEventListener('animationend', () => {
         message.classList.remove('animated', 'bounceInDown', 'fast');
@@ -276,14 +308,14 @@ function showDisplay() {
     message.style.zIndex = '90';
 
     // Show
-    display.classList.remove('hide');
-    display.classList.add('show');
+    palette.classList.remove('hide');
+    palette.classList.add('show');
 }
 
 function showBall() {
     // Hide
-    display.classList.remove('show');
-    display.classList.add('hide');
+    palette.classList.remove('show');
+    palette.classList.add('hide');
     footer.classList.add('hide');
     footer.classList.remove('show');
     message.classList.remove('show');
@@ -301,8 +333,8 @@ function showMessage() {
     ball.classList.add('hide');
     footer.classList.add('hide');
     footer.classList.remove('show');
-    display.classList.remove('show');
-    display.classList.add('hide');
+    palette.classList.remove('show');
+    palette.classList.add('hide');
 
     // Show
     message.classList.remove('hide');

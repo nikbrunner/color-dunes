@@ -5,20 +5,21 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta http-equiv="X-UA-Compatible" content="ie=edge" />
         <meta http-equiv="X-UA-Compatible" content="IE=7" />
-        <link rel="shortcut icon" href="./img/favicon.png" type="image/x-icon" />
-
+        <link
+            rel="shortcut icon"
+            href="./img/favicon.png"
+            type="image/x-icon"
+        />
         <link
             rel="stylesheet"
             href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
             integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
             crossorigin="anonymous"
         />
-
         <link
-            href="https://fonts.googleapis.com/css?family=Pacifico|Ubuntu+Mono:700&display=swap"
+            href="https://fonts.googleapis.com/css?family=Pacifico|Ubuntu+Mono:700&paletteDisplay=swap"
             rel="stylesheet"
         />
-
         <link rel="stylesheet" href="./styles/styles.scss" />
         <title>Color Dunes</title>
     </head>
@@ -59,47 +60,68 @@
 
         <main id="wrapper">
             <header class="header">
-                <div class="header__logo">
-                    <h1 id="logo">Color Dunes</h1>
+                <div class="header__brand">
+                    <h1 class="brand__logo">Color Dunes</h1>
                 </div>
-                <div class="header__buttons">
-                    <button id="btnStart">
+                <div class="header__controls">
+                    <button class="controls__button" id="btnStart">
                         <i class="fas fa-play"></i>
                     </button>
-                    <button id="btnStop">
+                    <button class="controls__button" id="btnStop">
                         <i class="fas fa-stop"></i>
                     </button>
                 </div>
             </header>
 
-            <div id="container">
-                <div id="display" class="hide">
-                    <div class="display__color" id="display__color1">
-                        <span id="display__color1__value"></span>
+            <div class="container">
+                <div class="ball"></div>
+                <div class="palette" class="hide">
+                    <div class="palette__color" id="palette__color1">
+                        <span
+                            class="palette__color__value"
+                            id="palette__color1__value"
+                        ></span>
                     </div>
-                    <div class="display__color" id="display__color2">
-                        <span id="display__color2__value"></span>
+                    <div class="palette__color" id="palette__color2">
+                        <span
+                            class="palette__color__value"
+                            id="palette__color2__value"
+                        ></span>
                     </div>
-                    <div class="display__color" id="display__color3">
-                        <span id="display__color3__value"></span>
+                    <div class="palette__color" id="palette__color3">
+                        <span
+                            class="palette__color__value"
+                            id="palette__color3__value"
+                        ></span>
                     </div>
-                    <div class="display__color" id="display__color4">
-                        <span id="display__color4__value"></span>
+                    <div class="palette__color" id="palette__color4">
+                        <span
+                            class="palette__color__value"
+                            id="palette__color4__value"
+                        ></span>
                     </div>
-                    <div class="display__color" id="display__color5">
-                        <span id="display__color5__value"></span>
+                    <div class="palette__color" id="palette__color5">
+                        <span
+                            class="palette__color__value"
+                            id="palette__color5__value"
+                        ></span>
                     </div>
                 </div>
-                <div id="message" class="hide"></div>
-                <div id="ball"></div>
+                <div class="message" class="hide"></div>
             </div>
-            <footer id="footer" class="hide">
-                <a class="github-link" href="https://github.com/nikbrunner/color-dunes"
-                    ><i class="fab fa-github"></i> Repo</a
+
+            <footer class="footer" class="hide">
+                <a
+                    class="footer__link"
+                    href="https://github.com/nikbrunner/color-dunes"
                 >
-                <a class="github-link" href="https://nibru.dev"
-                    ><i class="fas fa-pencil-ruler"></i> nibru</a
-                >
+                    <i class="fab fa-github"></i>
+                    Repo
+                </a>
+                <a class="footer__link" href="https://nibru.dev">
+                    <i class="fas fa-pencil-ruler"></i>
+                    nibru
+                </a>
             </footer>
         </main>
 

@@ -16,7 +16,7 @@
     width: $container-width;
     margin: 0 auto;
     padding: 0 2.5rem;
-    background: $color-dark-transparent-high;
+    background: $color-dark-transparent-low;
     border-radius: $border-radius $border-radius 0 0;
     @media screen and (max-width: 1024px) {
         width: $container-width--wider;
@@ -27,51 +27,53 @@
         height: 10vh;
         padding: 0 1rem;
     }
-    &__logo {
+    &__brand {
         @include flex(row nowrap, flex-start, center, center);
-
-        h1 {
-            color: white;
-            font-size: 2rem;
-            font-family: 'Pacifico', sans-serif;
-            background-clip: text !important;
-            -webkit-background-clip: text !important;
-            -webkit-text-fill-color: transparent !important;
-            text-shadow: 0 0.2rem 0 white;
-            // letter-spacing: 0.2rem;
+        .brand {
+            &__logo {
+                color: white;
+                font-size: 2rem;
+                font-family: 'Pacifico', sans-serif;
+                background-clip: text !important;
+                -webkit-background-clip: text !important;
+                -webkit-text-fill-color: transparent !important;
+                text-shadow: 0 0.2rem 0 white;
+            }
         }
     }
-    &__buttons {
+    &__controls {
         @include flex(row nowrap, flex-end, center, center);
         z-index: 60;
-        button {
-            height: 4rem;
-            font-size: 2rem;
-            margin: 0 1rem;
-            background: transparent;
-            color: white;
-            border: 0;
-            cursor: pointer;
-            position: relative;
-            opacity: 0.75;
-            z-index: 61;
-            &::-moz-focus-inner {
+        .controls {
+            &__button {
+                background: transparent;
                 border: 0;
-            }
-            &:last-of-type {
-                margin-right: 0;
-            }
-            &:hover {
-                opacity: 1;
-            }
-            &:focus {
-                outline: none;
+                color: white;
+                cursor: pointer;
+                font-size: 2rem;
+                height: 4rem;
+                margin: 0 1rem;
+                opacity: 0.75;
+                position: relative;
+                z-index: 61;
+                &::-moz-focus-inner {
+                    border: 0;
+                }
+                &:last-of-type {
+                    margin-right: 0;
+                }
+                &:hover {
+                    opacity: 1;
+                }
+                &:focus {
+                    outline: none;
+                }
             }
         }
     }
 }
 
-#container {
+.container {
     // @include grid(1fr, 0, 90% 10%, 0);
     width: $container-width;
     height: 75vh;
@@ -91,7 +93,7 @@
     }
 }
 
-#display {
+.palette {
     @include flex(column nowrap, center, center, center);
     position: absolute;
     width: 100%;
@@ -101,10 +103,7 @@
     border-radius: 0 0 $border-radius $border-radius;
     transition: opacity 0.5s;
     z-index: 100;
-    @media screen and (max-width: 768px) {
-        // height: 80%;
-    }
-    div {
+    &__color {
         @include flex(row nowrap, center, center, center);
         background: $color-dark-transparent-low;
         cursor: pointer;
@@ -114,15 +113,12 @@
         font-size: 2rem;
         font-weight: bold;
         transition: all 0.15s;
-        @media screen and (max-width: 768px) {
-            // height: 15%;
-        }
         &:hover {
             filter: drop-shadow(0 0 3.5rem rgba(0, 0, 0, 0.25));
             z-index: 100;
             height: 50%;
         }
-        span {
+        &__value {
             position: relative;
             padding-bottom: 0.25rem;
             transition: all 0.15s;
@@ -145,18 +141,20 @@
     }
 }
 
-#message {
+.message {
     @include flex(column nowrap, center, center, center);
-    font-family: 'Pacifico', sans-serif;
-    text-shadow: 0 0.075rem rgba(0, 0, 0, 0.5);
     position: absolute;
     top: 0;
     width: 100%;
     height: 100%;
     padding: 0;
-    font-size: 2rem;
     z-index: 90;
-    span {
+    &__text {
+        font-family: 'Pacifico', sans-serif;
+        font-size: 2rem;
+        text-shadow: 0 0.075rem 2.5rem rgba(0, 0, 0, 0.5);
+    }
+    &__color {
         filter: drop-shadow(0 0.25rem 1rem rgba(0, 0, 0, 0.25));
         font-family: 'Ubuntu Mono', monospace;
         padding: 1rem;
@@ -168,7 +166,7 @@
     }
 }
 
-#ball {
+.ball {
     width: 5rem;
     height: 5rem;
     position: absolute;
@@ -178,7 +176,7 @@
     z-index: 55;
 }
 
-#footer {
+.footer {
     @include flex(row nowrap, center, center, center);
     width: $container-width;
     margin: 0 auto;
@@ -215,34 +213,30 @@ svg {
     position: fixed;
     bottom: 0;
     left: 0;
+    &:nth-of-type(1) {
+        height: 75vh;
+        z-index: 7;
+        filter: blur(5rem);
+    }
+    &:nth-of-type(2) {
+        height: 75vh;
+        z-index: 8;
+    }
+    &:nth-of-type(3) {
+        height: 50vh;
+        z-index: 9;
+    }
+    &:nth-of-type(4) {
+        z-index: 10;
+    }
 }
 
 path {
     transition: fill 0.15s;
-    /* min-width: 100vw; */
     filter: drop-shadow(0 -0.25rem 1rem rgba(0, 0, 0, 0.25));
 }
 
-svg:nth-of-type(1) {
-    height: 75vh;
-    z-index: 7;
-    // filter: brightness(25%) blur(5rem);
-    filter: blur(5rem);
-}
-
-svg:nth-of-type(2) {
-    height: 75vh;
-    z-index: 8;
-    // filter: brightness(50%);
-}
-svg:nth-of-type(3) {
-    height: 50vh;
-    z-index: 9;
-    // filter: brightness(75%);
-}
-svg:nth-of-type(4) {
-    z-index: 10;
-}
+// ! Utility Classes
 
 .hide {
     opacity: 0;
