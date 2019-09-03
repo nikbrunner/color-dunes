@@ -19,12 +19,14 @@ My goal is combine something like a screensaver, something beautiful to look at 
 -   [x] ~~_Generate HSL Value as random color starting point to be able to control saturation and lightness_~~ [2019-09-02]
 -   [x] ~~_Check consistency and Refactor & Optimize_~~ [2019-09-02]
 -   [x] ~~_Favicon (2 Dots with 180deg value)_~~ [2019-09-02]
+-   [x] ~~_Check Units (vh, vw, rem)_~~ [2019-09-03]
 -   [ ] Animate palette colors
 -   [ ] Create 3 checkboxes for saturation and lightness presets
 -   [ ] Remove eventlisteners on message display
 -   [ ] Create Function to add Event Listeners
 -   [ ] Local fonts
 -   [ ] Prefixes
+-   [ ] Remove unused keyframe code
 -   [ ] Responsiveness
 -   [ ] Update Readme
 -   [ ] Deploy

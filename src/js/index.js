@@ -1,6 +1,7 @@
 // todo function to add eventlisteners
 // todo remove eventlisteners when message is shown
 // todo input fields for lightness and saturation (3 Presets)
+// ?    Sometimes the event listeners get a little stuck
 
 // ! Import NPM 'ColorJS' Package
 import ColorJS from 'color';
@@ -18,23 +19,23 @@ const message = document.querySelector('.message');
 
 // UI | Palette
 const palette = document.querySelector('.palette');
-const paletteColor1 = document.getElementById('palette__color1');
-const paletteColor2 = document.getElementById('palette__color2');
-const paletteColor3 = document.getElementById('palette__color3');
-const paletteColor4 = document.getElementById('palette__color4');
-const paletteColor5 = document.getElementById('palette__color5');
-const paletteColor1Value = document.getElementById('palette__color1__value');
-const paletteColor2Value = document.getElementById('palette__color2__value');
-const paletteColor3Value = document.getElementById('palette__color3__value');
-const paletteColor4Value = document.getElementById('palette__color4__value');
-const paletteColor5Value = document.getElementById('palette__color5__value');
-const paletteColorValues = Array.prototype.slice.call(
+const paletteColor1 = document.querySelector('.palette__color--1');
+const paletteColor2 = document.querySelector('.palette__color--2');
+const paletteColor3 = document.querySelector('.palette__color--3');
+const paletteColor4 = document.querySelector('.palette__color--4');
+const paletteColor5 = document.querySelector('.palette__color--5');
+const paletteColor1Value = document.querySelector('.palette__color__value--1');
+const paletteColor2Value = document.querySelector('.palette__color__value--2');
+const paletteColor3Value = document.querySelector('.palette__color__value--3');
+const paletteColor4Value = document.querySelector('.palette__color__value--4');
+const paletteColor5Value = document.querySelector('.palette__color__value--5');
+const paletteColorAllValues = Array.prototype.slice.call(
     document.querySelectorAll('.palette__color__value')
 );
 
 // UI | Footer
 const footer = document.querySelector('footer');
-const footerLink = Array.prototype.slice.call(
+const footerLinks = Array.prototype.slice.call(
     document.getElementsByClassName('footer__link')
 );
 
@@ -86,7 +87,7 @@ function init() {
             stopMove();
         }
     };
-    paletteColorValues.forEach(paletteColorValue => {
+    paletteColorAllValues.forEach(paletteColorValue => {
         paletteColorValue.addEventListener('click', copyColor);
     });
     btnStart.addEventListener('click', startMove);
@@ -247,7 +248,7 @@ function generateModifyAndPaint() {
     btnStart.style.color = randomColor1;
     btnStop.style.color = randomColor2;
     ball.style.background = randomColor2;
-    footerLink.forEach(footerLink => {
+    footerLinks.forEach(footerLink => {
         footerLink.style.color = footerLinkColor;
     });
     wave1.style.fill = randomColor2;
