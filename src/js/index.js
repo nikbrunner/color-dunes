@@ -24,6 +24,10 @@ const paletteColor2 = document.querySelector('.palette__color--2');
 const paletteColor3 = document.querySelector('.palette__color--3');
 const paletteColor4 = document.querySelector('.palette__color--4');
 const paletteColor5 = document.querySelector('.palette__color--5');
+const paletteColorAll = Array.prototype.slice.call(
+    document.querySelectorAll('.palette__color')
+);
+
 const paletteColor1Value = document.querySelector('.palette__color__value--1');
 const paletteColor2Value = document.querySelector('.palette__color__value--2');
 const paletteColor3Value = document.querySelector('.palette__color__value--3');
@@ -80,16 +84,19 @@ function init() {
     window.addEventListener('resize', () => {
         measureContainer();
     });
-    document.body.onkeydown = e => {
-        if (e.keyCode == 32 && ballIsMoving == false) {
-            startMove();
-        } else {
-            stopMove();
-        }
-    };
+
+    // document.body.onkeydown = e => {
+    //     if (e.keyCode == 32 && ballIsMoving == false) {
+    //         startMove();
+    //     } else {
+    //         stopMove();
+    //     }
+    // };
+
     paletteColorAllValues.forEach(paletteColorValue => {
         paletteColorValue.addEventListener('click', copyColor);
     });
+
     btnStart.addEventListener('click', startMove);
     btnStop.addEventListener('click', stopMove);
 
@@ -98,6 +105,7 @@ function init() {
 
     // init() | Generate a new color, create shades and paint everything
     generateModifyAndPaint();
+    showBall();
 }
 
 init();
@@ -112,7 +120,7 @@ function startMove() {
 function stopMove() {
     stopMoveX();
     stopMoveY();
-    showDisplay();
+    showPalette();
     ballIsMoving = false;
 }
 
@@ -233,18 +241,18 @@ function generateModifyAndPaint() {
         .darken(0.75)
         .hex();
     // Shades | Logo
-    logoColor1 = randomColor2_shade_dark;
+    logoColor1 = randomColor2_shade_darker;
     logoColor2 = ColorJS(logoColor1)
         .rotate(15)
         .lighten(0.25);
-    logoColor3 = ColorJS(randomColor1).lighten(0.3);
+    logoColor3 = ColorJS(randomColor1).lighten(0.5);
     // Shades | Footer
     // footerLinkColor = ColorJS(randomColor2).lighten(0.25);
 
     // ! Paint the walls
     document.body.style.background = randomColor1;
     logo.style.background = `-webkit-linear-gradient(360deg, ${logoColor1}, ${logoColor2})`;
-    logo.style.textShadow = `0 0.2rem 0 ${logoColor3}`;
+    logo.style.textShadow = `0.1rem 0.1rem 0 ${logoColor3}`;
     btnStart.style.color = randomColor1;
     btnStop.style.color = randomColor2;
     ball.style.background = randomColor2;
@@ -281,11 +289,8 @@ function copyColor(e) {
     document.body.removeChild(tempInput);
     showMessage();
     message.innerHTML = `<p class="message__text">Copied <span class="message__color" style="background: ${copiedColor}">${copiedColor}</span> to your clipboard!`;
-    message.classList.add('animated', 'bounceInDown', 'fast');
-    message.addEventListener('animationend', () => {
-        message.classList.remove('animated', 'bounceInDown', 'fast');
-    });
-    setTimeout(showDisplay, 3000);
+    animateCSS(message, 'bounceInDown', 'fast');
+    setTimeout(showPalette, 2750);
 }
 
 function measureContainer() {
@@ -297,7 +302,7 @@ function measureContainer() {
     containerEdgeBottom = container.offsetHeight;
 }
 
-function showDisplay() {
+function showPalette() {
     // Hide
     ball.classList.add('hide');
     ball.classList.remove('show');
@@ -308,12 +313,25 @@ function showDisplay() {
     message.innerHTML = '';
     message.style.zIndex = '90';
 
+    // Animate bars
+    animateCSS(paletteColor1, 'slideInLeft', 'faster');
+    animateCSS(paletteColor2, 'slideInRight', 'faster');
+    animateCSS(paletteColor3, 'slideInLeft', 'faster');
+    animateCSS(paletteColor4, 'slideInRight', 'faster');
+    animateCSS(paletteColor5, 'slideInLeft', 'faster');
+
+    // Remove
+    btnStop.removeEventListener('click', stopMove);
+
     // Show
     palette.classList.remove('hide');
     palette.classList.add('show');
 }
 
 function showBall() {
+    // Event listener
+    btnStop.addEventListener('click', stopMove);
+
     // Hide
     palette.classList.remove('show');
     palette.classList.add('hide');
@@ -342,4 +360,16 @@ function showMessage() {
     message.classList.remove('hide');
     message.classList.add('show');
     message.style.zIndex = '110';
+}
+
+function animateCSS(element, animationName, speed, callback) {
+    element.classList.add('animated', animationName, speed);
+
+    function handleAnimationEnd() {
+        element.classList.remove('animated', animationName, speed);
+        element.removeEventListener('animationend', handleAnimationEnd);
+        if (typeof callback === 'function') callback();
+    }
+
+    element.addEventListener('animationend', handleAnimationEnd);
 }

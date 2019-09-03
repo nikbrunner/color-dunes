@@ -120,30 +120,36 @@
         background: $color-dark-transparent-low;
         cursor: pointer;
         font-family: 'Ubuntu Mono', monospace;
-        font-size: 2rem;
+        font-size: 1.25rem;
         font-weight: bold;
-        height: 25%;
+        // height: 25%;
         text-shadow: 0 0 2rem rgba(0, 0, 0, 0.25);
         transition: all 0.15s;
         width: 100%;
         &--1 {
             animation-delay: 0s !important;
+            flex-basis: 35%;
         }
         &--2 {
-            animation-delay: 0.25s !important;
+            animation-delay: 0.1s !important;
+            flex-basis: 10%;
         }
         &--3 {
-            animation-delay: 0.5s !important;
+            animation-delay: 0.2s !important;
+            flex-basis: 10%;
         }
         &--4 {
-            animation-delay: 0.75s !important;
+            animation-delay: 0.3s !important;
+            flex-basis: 10%;
         }
         &--5 {
-            animation-delay: 1s !important;
+            animation-delay: 0.4s !important;
+            flex-basis: 35%;
         }
         &:hover {
             filter: drop-shadow(0 0 3.5rem rgba(0, 0, 0, 0.25));
-            height: 50%;
+            // height: 50%;
+            flex-basis: 50%;
             z-index: 100;
         }
         &__value {
@@ -212,7 +218,7 @@
 
 .footer {
     @include flex(row nowrap, center, center, center);
-    background: $color-dark-transparent-high;
+    background: $color-dark-transparent-low;
     border-radius: 0 0 $border-radius $border-radius;
     height: 7.5vh;
     margin: 0 auto;
@@ -228,7 +234,7 @@
         opacity: 0.5;
         text-decoration: none;
         img {
-            height: 1.5rem;
+            height: 1rem;
             margin: 0 0.25rem;
         }
         &:hover {

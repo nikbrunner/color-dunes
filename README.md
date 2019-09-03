@@ -19,6 +19,7 @@ My goal is combine something like a screensaver, something beautiful to look at 
 -   [ ] Class Refactor Waves
 -   [ ] Create 3 checkboxes for saturation and lightness presets
     -   https://danklammer.com/articles/simple-css-toggle-switch/
+    -   https://stackoverflow.com/questions/9887360/how-can-i-check-if-a-checkbox-is-checked
 -   [ ] Update Readme
 -   [ ] Deploy
     -   [ ] Netlify
