@@ -40,10 +40,10 @@ const footerLinks = Array.prototype.slice.call(
 );
 
 // UI | Waves
-const wave1 = document.getElementById('wave1');
-const wave2 = document.getElementById('wave2');
-const wave3 = document.getElementById('wave3');
-const wave4 = document.getElementById('wave4');
+const wave1 = document.querySelector('.wave1__path');
+const wave2 = document.querySelector('.wave2__path');
+const wave3 = document.querySelector('.wave3__path');
+const wave4 = document.querySelector('.wave4__path');
 
 // ! Initialize Variables
 // Variables | Measurements
@@ -62,7 +62,7 @@ let randomColor1,
     randomColor2_shade_darker,
     randomColor2_shade_darkest;
 let logoColor1, logoColor2, logoColor3;
-let footerLinkColor;
+// let footerLinkColor;
 
 // Variables | Initial Values and Switches
 let steps = 3;
@@ -239,7 +239,7 @@ function generateModifyAndPaint() {
         .lighten(0.25);
     logoColor3 = ColorJS(randomColor1).lighten(0.3);
     // Shades | Footer
-    footerLinkColor = ColorJS(randomColor2).lighten(0.25);
+    // footerLinkColor = ColorJS(randomColor2).lighten(0.25);
 
     // ! Paint the walls
     document.body.style.background = randomColor1;
@@ -248,9 +248,9 @@ function generateModifyAndPaint() {
     btnStart.style.color = randomColor1;
     btnStop.style.color = randomColor2;
     ball.style.background = randomColor2;
-    footerLinks.forEach(footerLink => {
-        footerLink.style.color = footerLinkColor;
-    });
+    // footerLinks.forEach(footerLink => {
+    //     footerLink.style.color = footerLinkColor;
+    // });
     wave1.style.fill = randomColor2;
     wave2.style.fill = randomColor2_shade_dark;
     wave3.style.fill = randomColor2_shade_darker;

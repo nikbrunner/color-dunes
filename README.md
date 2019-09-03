@@ -16,6 +16,7 @@ My goal is combine something like a screensaver, something beautiful to look at 
 ### General
 
 -   [x] ~~_Check consistency and Refactor & Optimize_~~ [2019-09-02]
+-   [ ] Class Refactor Waves
 -   [ ] Create 3 checkboxes for saturation and lightness presets
     -   https://danklammer.com/articles/simple-css-toggle-switch/
 -   [ ] Update Readme

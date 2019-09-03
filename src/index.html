@@ -10,12 +10,12 @@
             href="./img/favicon.png"
             type="image/x-icon"
         />
-        <link
+        <!-- <link
             rel="stylesheet"
             href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
             integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
             crossorigin="anonymous"
-        />
+        /> -->
         <link
             href="https://fonts.googleapis.com/css?family=Pacifico|Ubuntu+Mono:700&paletteDisplay=swap"
             rel="stylesheet"
@@ -25,33 +25,49 @@
     </head>
 
     <body>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+        <svg
+            class="wave wave4"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 1440 320"
+        >
             <path
-                id="wave4"
+                class="wave4__path"
                 fill="#fff"
                 fill-opacity="1"
                 d="M0,96L120,101.3C240,107,480,117,720,101.3C960,85,1200,43,1320,21.3L1440,0L1440,320L1320,320C1200,320,960,320,720,320C480,320,240,320,120,320L0,320Z"
             ></path>
         </svg>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+        <svg
+            class="wave wave3"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 1440 320"
+        >
             <path
-                id="wave3"
+                class="wave3__path"
                 fill="#fff"
                 fill-opacity="1"
                 d="M0,96L120,133.3C240,171,480,245,720,245.3C960,245,1200,171,1320,133.3L1440,96L1440,320L1320,320C1200,320,960,320,720,320C480,320,240,320,120,320L0,320Z"
             ></path>
         </svg>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+        <svg
+            class="wave wave2"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 1440 320"
+        >
             <path
-                id="wave2"
+                class="wave2__path"
                 fill="#fff"
                 fill-opacity="1"
                 d="M0,224L48,192C96,160,192,96,288,101.3C384,107,480,181,576,213.3C672,245,768,235,864,208C960,181,1056,139,1152,138.7C1248,139,1344,181,1392,202.7L1440,224L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
             ></path>
         </svg>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+        <svg
+            class="wave wave1"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 1440 320"
+        >
             <path
-                id="wave1"
+                class="wave1__path"
                 fill="#fff"
                 fill-opacity="1"
                 d="M0,128L48,149.3C96,171,192,213,288,229.3C384,245,480,235,576,202.7C672,171,768,117,864,133.3C960,149,1056,235,1152,240C1248,245,1344,171,1392,133.3L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
@@ -65,10 +81,40 @@
                 </div>
                 <div class="header__controls">
                     <button class="controls__button" id="btnStart">
-                        <i class="fas fa-play"></i>
+                        <!-- <i class="fas fa-play"></i> -->
+                        <img src="./img/play.svg" alt="Play Button" />
+                        <!-- <svg
+                            id="i-play"
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 32 32"
+                            width="32"
+                            height="32"
+                            fill="none"
+                            stroke="currentcolor"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                        >
+                            <path d="M10 2 L10 30 24 16 Z" />
+                        </svg> -->
                     </button>
                     <button class="controls__button" id="btnStop">
-                        <i class="fas fa-stop"></i>
+                        <!-- <i class="fas fa-stop"></i> -->
+                        <img src="./img/pause.svg" alt="Pause Button" />
+                        <!-- <svg
+                            id="i-pause"
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 32 32"
+                            width="32"
+                            height="32"
+                            fill="none"
+                            stroke="currentcolor"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                        >
+                            <path d="M23 2 L23 30 M9 2 L9 30" />
+                        </svg> -->
                     </button>
                 </div>
             </header>
@@ -110,11 +156,13 @@
                     class="footer__link"
                     href="https://github.com/nikbrunner/color-dunes"
                 >
-                    <i class="fab fa-github"></i>
+                    <!-- <i class="fab fa-github"></i> -->
+                    <img src="./img/github.svg" alt="GitHub Profile" />
                     Repo
                 </a>
                 <a class="footer__link" href="https://nibru.dev">
-                    <i class="fas fa-pencil-ruler"></i>
+                    <!-- <i class="fas fa-pencil-ruler"></i> -->
+                    <img src="./img/compose.svg" alt="Author" />
                     nibru
                 </a>
             </footer>

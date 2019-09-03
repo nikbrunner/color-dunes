@@ -55,11 +55,15 @@
                 border: 0;
                 color: white;
                 cursor: pointer;
-                font-size: 1.5rem;
+                // font-size: 1.5rem;
                 margin: 0 1rem;
                 opacity: 0.5;
                 position: relative;
                 z-index: 61;
+                img {
+                    display: inline-block;
+                    height: 1.5rem;
+                }
                 &::-moz-focus-inner {
                     border: 0;
                 }
@@ -218,12 +222,17 @@
     width: $container-width;
     z-index: 110;
     &__link {
-        color: white;
+        @include flex(row nowrap, center, center, center);
+        color: black !important;
         margin: 0 1rem;
         opacity: 0.5;
         text-decoration: none;
+        img {
+            height: 1.5rem;
+            margin: 0 0.25rem;
+        }
         &:hover {
-            color: white !important;
+            // color: white !important;
             opacity: 1 !important;
         }
     }
@@ -244,31 +253,30 @@
 
 // ! === Waves ================================================
 
-svg {
+.wave {
     bottom: 0;
     left: 0;
     position: fixed;
-    &:nth-of-type(1) {
+    path {
+        filter: drop-shadow(0 -0.25rem 1rem rgba(0, 0, 0, 0.25));
+        transition: fill 0.15s;
+    }
+    &4 {
         filter: blur(5rem);
         height: 75vh;
         z-index: 7;
     }
-    &:nth-of-type(2) {
+    &3 {
         height: 75vh;
         z-index: 8;
     }
-    &:nth-of-type(3) {
+    &2 {
         height: 50vh;
         z-index: 9;
     }
-    &:nth-of-type(4) {
+    &1 {
         z-index: 10;
     }
-}
-
-path {
-    filter: drop-shadow(0 -0.25rem 1rem rgba(0, 0, 0, 0.25));
-    transition: fill 0.15s;
 }
 
 // ! === Utility Classes ================================================
