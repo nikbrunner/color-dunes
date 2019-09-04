@@ -17,8 +17,9 @@
 
 .header {
     @include grid(2fr 1fr, none, none, 0);
-    background: $color-dark-transparent-low;
+    background: $color-dark-transparent-high;
     border-radius: $border-radius $border-radius 0 0;
+    user-select: none;
     height: 7.5vh;
     margin: 0 auto;
     padding: 0 2.5rem;
@@ -42,7 +43,6 @@
                 color: white;
                 font-family: 'Pacifico', sans-serif;
                 font-size: 2rem;
-                text-shadow: 0 0.2rem 0 white;
             }
         }
     }
@@ -55,13 +55,12 @@
                 border: 0;
                 color: white;
                 cursor: pointer;
-                // font-size: 1.5rem;
+                height: 1.5rem;
                 margin: 0 1rem;
-                opacity: 0.5;
+                opacity: 0.9;
                 position: relative;
                 z-index: 61;
-                img {
-                    display: inline-block;
+                svg {
                     height: 1.5rem;
                 }
                 &::-moz-focus-inner {
@@ -72,6 +71,8 @@
                 }
                 &:hover {
                     opacity: 1;
+                    filter: drop-shadow(0 0.1rem rgba(0, 0, 0, 0.25));
+                    transform: scale(1.25);
                 }
                 &:focus {
                     outline: none;
@@ -223,6 +224,7 @@
 
 .footer {
     @include flex(row nowrap, center, center, center);
+    // animation-delay: 0.25s !important;
     background: $color-dark-transparent-low;
     border-radius: 0 0 $border-radius $border-radius;
     height: 7.5vh;
@@ -232,26 +234,11 @@
     transition: opacity 1s;
     width: $container-width;
     z-index: 110;
-    &__link {
-        @include flex(row nowrap, center, center, center);
-        color: black !important;
-        margin: 0 1rem;
-        opacity: 0.5;
-        text-decoration: none;
-        img {
-            height: 1rem;
-            margin: 0 0.25rem;
-        }
-        &:hover {
-            // color: white !important;
-            opacity: 1 !important;
-        }
-    }
     @media screen and (max-width: 1024px) {
         width: $container-width--wider;
     }
     @media screen and (max-width: 768px) {
-        // background: $color-dark-transparent-high;
+        animation: none !important;
         border-radius: 0;
         border-radius: 0;
         bottom: 0;
@@ -260,6 +247,23 @@
         position: fixed;
         width: $container-width--widest;
         width: 100vw;
+    }
+    &__link {
+        @include flex(row nowrap, center, center, center);
+        color: white;
+        margin: 0 1rem;
+        opacity: 0.5;
+        text-decoration: none;
+        svg {
+            height: 1rem;
+            margin: 0 0.25rem;
+        }
+        span {
+            font-size: 1rem;
+        }
+        &:hover {
+            opacity: 9 !important;
+        }
     }
 }
 

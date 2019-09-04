@@ -39,9 +39,9 @@ const paletteColorAllValues = Array.prototype.slice.call(
 
 // UI | Footer
 const footer = document.querySelector('footer');
-const footerLinks = Array.prototype.slice.call(
-    document.getElementsByClassName('footer__link')
-);
+// const footerLinks = Array.prototype.slice.call(
+//     document.getElementsByClassName('footer__link')
+// );
 
 // UI | Waves
 const wave1 = document.querySelector('.wave1__path');
@@ -66,7 +66,7 @@ let randomColor1,
     randomColor2_shade_darker,
     randomColor2_shade_darkest;
 let logoColor1, logoColor2, logoColor3;
-// let footerLinkColor;
+let footerLinkColor;
 
 // Variables | Initial Values and Switches
 let steps = 3;
@@ -237,7 +237,7 @@ function generateModifyAndPaint() {
     logoColor1 = randomColor2_shade_darker;
     logoColor2 = ColorJS(logoColor1)
         .rotate(15)
-        .lighten(0.25);
+        .lighten(0.5);
     logoColor3 = '#fff';
     // Shades | Footer
     // footerLinkColor = ColorJS(randomColor2).lighten(0.25);
@@ -245,7 +245,7 @@ function generateModifyAndPaint() {
     // Paint the walls
     document.body.style.background = randomColor1;
     logo.style.background = `-webkit-linear-gradient(360deg, ${logoColor1}, ${logoColor2})`;
-    logo.style.textShadow = `0.1rem 0.1rem 0 ${logoColor3}`;
+    // logo.style.textShadow = `0.1rem 0.1rem 0 ${logoColor3}`;
     btnStart.style.color = randomColor1;
     btnStop.style.color = randomColor2;
     ball.style.background = randomColor2;
@@ -304,18 +304,18 @@ function showPalette() {
     ball.classList.remove('show');
     footer.classList.add('show');
     footer.classList.remove('hide');
-    // footer.style.display = 'flex';
     message.classList.add('hide');
     message.classList.remove('show');
     message.innerHTML = '';
     message.style.zIndex = '90';
 
-    // Animate bars
+    // Animations
     animateCSS(paletteColor1, 'slideInLeft', 'faster');
     animateCSS(paletteColor2, 'slideInRight', 'faster');
     animateCSS(paletteColor3, 'slideInLeft', 'faster');
     animateCSS(paletteColor4, 'slideInRight', 'faster');
     animateCSS(paletteColor5, 'slideInLeft', 'faster');
+    animateCSS(footer, 'slideInDown', 'faster');
 
     // Show
     palette.classList.remove('hide');
@@ -329,7 +329,6 @@ function showBall() {
     palette.classList.add('hide');
     footer.classList.add('hide');
     footer.classList.remove('show');
-    // footer.style.display = 'none';
     message.classList.remove('show');
     message.classList.add('hide');
     message.innerHTML = '';

@@ -55,3 +55,4 @@ My goal is combine something like a screensaver, something beautiful to look at 
 -   [x] ~~_Generate HSL Value as random color starting point to be able to control saturation and lightness_~~ [2019-09-02]
 -   [x] ~~_Remove eventlisteners on message display_~~ [2019-09-04]
 -   [x] ~~_Create Function to add Event Listeners_~~ [2019-09-04]
+-   [ ] Function to place Ball to start position
