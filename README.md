@@ -42,11 +42,11 @@ My goal is combine something like a screensaver, something beautiful to look at 
 -   [x] ~~_Check Units (vh, vw, rem)_~~ [2019-09-03]
 -   [x] ~~_Animate palette colors_~~ [2019-09-04]
 -   [x] ~~_Deactivate 'Zoom' on mobile_~~ [2019-09-04]
--   [ ] Refactor Transparency colors
+-   [x] ~~_Refactor Transparency colors_~~ [2019-09-04]
+-   [x] ~~_Remove unused keyframe code_~~ [2019-09-04]
+-   [x] ~~_Optimize Logo Colors_~~ [2019-09-04]
 -   [ ] Optimize Responsiveness of fonts
--   [ ] Optimize Logo Colors
 -   [ ] Prefixes
--   [ ] Remove unused keyframe code
 
 ### JavaScript
 

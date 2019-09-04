@@ -1,7 +1,4 @@
-// todo function to add eventlisteners
-// todo remove eventlisteners when message is shown
 // todo input fields for lightness and saturation (3 Presets)
-// ?    Sometimes the event listeners get a little stuck
 
 // ! Import NPM 'ColorJS' Package
 import ColorJS from 'color';
