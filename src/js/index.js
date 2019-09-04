@@ -69,10 +69,9 @@ let randomColor1,
     randomColor2_shade_dark,
     randomColor2_shade_darker,
     randomColor2_shade_darkest;
-let logoColor1, logoColor2, logoColor3;
-let footerLinkColor;
+let logoColor1, logoColor2;
 
-// Variables | Initial Values and Switches
+// Variables | App Values and Switches
 let steps = 3;
 let currPosX = 0;
 let currPosY = 0;
@@ -208,20 +207,14 @@ function randomColorHSL(
     let hue = Math.floor(Math.random() * 360);
 
     // Generate Saturation
-    let saturation = Math.floor(Math.random() * saturationMax) + saturationMin;
-    if (saturation > 100) {
-        saturation = saturationMax;
-    } else if (saturation < saturationMin) {
-        saturation = saturationMin;
-    }
+    let saturation =
+        Math.floor(Math.random() * (saturationMax - saturationMin + 1)) +
+        saturationMin;
 
     // Generate Lightness
-    let lightness = Math.floor(Math.random() * lightnessMax) + lightnessMin;
-    if (lightness > 100) {
-        lightness = lightnessMax;
-    } else if (lightness < lightnessMin) {
-        lightness = lightnessMin;
-    }
+    let lightness =
+        Math.floor(Math.random() * (lightnessMax - lightnessMin + 1)) +
+        lightnessMin;
 
     return `hsl(${hue}, ${saturation}%, ${lightness}%)`;
 }
@@ -232,50 +225,48 @@ function generateModifyAndPaint() {
     switch (true) {
         // ! satLow
         case satLow.checked && lightnessLow.checked:
-            randomColor1 = randomColorHSL(15, 50, 35, 50);
-            console.log('SatLow + LightnessLow: ' + randomColor1);
+            randomColor1 = randomColorHSL(15, 35, 15, 35);
             break;
+
         case satLow.checked && lightnessMid.checked:
-            randomColor1 = randomColorHSL(15, 50, 50, 75);
-            console.log('SatLow + LightnessMid: ' + randomColor1);
+            randomColor1 = randomColorHSL(15, 35, 35, 75);
             break;
+
         case satLow.checked && lightnessHigh.checked:
-            randomColor1 = randomColorHSL(15, 50, 75, 95);
-            console.log('SatLow + LightnessHigh: ' + randomColor1);
+            randomColor1 = randomColorHSL(15, 35, 75, 95);
             break;
 
         // ! satMid
         case satMid.checked && lightnessLow.checked:
-            randomColor1 = randomColorHSL(35, 75, 35, 50);
-            console.log('SatMid + LightnessLow: ' + randomColor1);
+            randomColor1 = randomColorHSL(35, 75, 15, 35);
             break;
+
         case satMid.checked && lightnessMid.checked:
-            randomColor1 = randomColorHSL(35, 75, 50, 75);
-            console.log('SatMid + LightnessMid: ' + randomColor1);
+            randomColor1 = randomColorHSL(35, 75, 35, 75);
             break;
+
         case satMid.checked && lightnessHigh.checked:
-            randomColor1 = randomColorHSL(35, 75, 75, 95);
-            console.log('SatMid + LightnessHigh: ' + randomColor1);
+            randomColor1 = randomColorHSL(23, 75, 75, 95);
+
             break;
 
         // ! satHigh
         case satHigh.checked && lightnessLow.checked:
-            randomColor1 = randomColorHSL(75, 95, 35, 50);
-            console.log('SatHigh + LightnessLow: ' + randomColor1);
+            randomColor1 = randomColorHSL(75, 95, 15, 35);
             break;
+
         case satHigh.checked && lightnessMid.checked:
-            randomColor1 = randomColorHSL(75, 95, 50, 75);
-            console.log('SatHigh + LightnessMid: ' + randomColor1);
+            randomColor1 = randomColorHSL(75, 95, 35, 75);
             break;
+
         case satHigh.checked && lightnessHigh.checked:
-            randomColor1 = randomColorHSL(75, 100, 75, 95);
-            console.log('SatHigh + LightnessHigh: ' + randomColor1);
+            randomColor1 = randomColorHSL(75, 95, 75, 95);
             break;
 
         // ! default
         default:
-            randomColor1 = randomColorHSL(40, 60, 40, 60);
-            console.log('default: ' + randomColor1);
+            randomColor1 = randomColorHSL(35, 75, 35, 75);
+
             break;
     }
 
@@ -299,20 +290,13 @@ function generateModifyAndPaint() {
     logoColor1 = randomColor2;
     logoColor2 = randomColor2_shade_dark;
 
-    logoColor3 = '#fff';
-    // Shades | Footer
-    // footerLinkColor = ColorJS(randomColor2).lighten(0.25);
-
     // Paint the walls
     document.body.style.background = randomColor1;
     logo.style.background = `-webkit-linear-gradient(360deg, ${logoColor1}, ${logoColor2})`;
-    // logo.style.textShadow = `0.1rem 0.1rem 0 ${logoColor3}`;
     btnStart.style.color = randomColor1;
     btnStop.style.color = randomColor2;
     ball.style.background = randomColor2;
-    // footerLinks.forEach(footerLink => {
-    //     footerLink.style.color = footerLinkColor;
-    // });
+
     wave1.style.fill = randomColor2;
     wave2.style.fill = randomColor2_shade_dark;
     wave3.style.fill = randomColor2_shade_darker;

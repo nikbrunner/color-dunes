@@ -8,6 +8,7 @@ My goal is combine something like a screensaver, something beautiful to look at 
 ## URL
 
 -   [Netlify: color-dunes](https://color-dunes.netlify.com/)
+-   [GitHub: color-dunes](https://github.com/nikbrunner/color-dunes)
 
 ## Tools & Resources
 
@@ -22,7 +23,7 @@ My goal is combine something like a screensaver, something beautiful to look at 
 
 -   [x] ~~_Check consistency and Refactor & Optimize_~~ [2019-09-02]
 -   [x] ~~_Class Refactor Waves_~~ [2019-09-04]
--   [ ] Create 3 checkboxes for saturation and lightness presets
+-   [x] ~~_Create 3 checkboxes for saturation and lightness presets_~~ [2019-09-04]
     -   https://danklammer.com/articles/simple-css-toggle-switch/
     -   https://stackoverflow.com/questions/9887360/how-can-i-check-if-a-checkbox-is-checked
 -   [ ] Final Deploy Update for Readme
@@ -46,8 +47,8 @@ My goal is combine something like a screensaver, something beautiful to look at 
 -   [x] ~~_Remove unused keyframe code_~~ [2019-09-04]
 -   [x] ~~_Optimize Logo Colors_~~ [2019-09-04]
 -   [x] ~~_Localize Fonts_~~ [2019-09-04]
--   [ ] Make the switches responsive
--   [ ] Prefixes
+-   [x] ~~_Make the container smaller since we now have the settings menu_~~ [2019-09-04]
+-   [x] ~~_Make the switches responsive_~~ [2019-09-04]
 
 ### JavaScript
 
@@ -57,4 +58,6 @@ My goal is combine something like a screensaver, something beautiful to look at 
 -   [x] ~~_Remove eventlisteners on message display_~~ [2019-09-04]
 -   [x] ~~_Create Function to add Event Listeners_~~ [2019-09-04]
 -   [x] ~~_Fix random color generator function_~~ [2019-09-04]
--   [ ] Function to place Ball to start position
+-   [x] ~~_Check Edgecases for the switches_~~ [2019-09-04]
+-   [x] ~~_Animate the Ball_~~ [2019-09-04]
+-   [x] ~~_Generated color values still need work_~~ [2019-09-04]

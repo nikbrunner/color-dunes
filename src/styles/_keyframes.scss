@@ -33,6 +33,15 @@
     animation-name: fadeIn;
 }
 
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
 @-webkit-keyframes bounceIn {
     from,
     20%,
