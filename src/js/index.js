@@ -78,38 +78,29 @@ let leftToRight = true;
 let topToBottom = true;
 let ballIsMoving = false;
 
-// ! Initialize Function
+// ! Initialize function
 function init() {
-    // init() | Event listener
-    window.addEventListener('resize', () => {
-        measureContainer();
-    });
+    // Add Event listener
+    addInitialAndPermanentEventListener();
+    addBtnStartEventListener();
+    addBtnStopEventListener();
 
-    // document.body.onkeydown = e => {
-    //     if (e.keyCode == 32 && ballIsMoving == false) {
-    //         startMove();
-    //     } else {
-    //         stopMove();
-    //     }
-    // };
-
-    paletteColorAllValues.forEach(paletteColorValue => {
-        paletteColorValue.addEventListener('click', copyColor);
-    });
-
-    btnStart.addEventListener('click', startMove);
-    btnStop.addEventListener('click', stopMove);
-
-    // init() | Measurements
+    // Measurements
     measureContainer();
 
-    // init() | Generate a new color, create shades and paint everything
+    // Generate a new color, create shades and paint everything
     generateModifyAndPaint();
+
+    // Initially show the ball on startup
     showBall();
+
+    // Toggle switch to false
+    ballIsMoving = false;
 }
 
 init();
 
+// ! Ball moving functions
 function startMove() {
     startMoveX();
     startMoveY();
@@ -193,27 +184,28 @@ function move(dir) {
     }
 }
 
+// ! Random color function
 function randomColorHSL(
     saturationMin,
     saturationMax,
     lightnessMin,
     lightnessMax
 ) {
-    // ! hsl(hue, saturation, lightness)
+    //   hsl(hue, saturation, lightness)
     //   hue 	            Defines a degree on the color wheel (from 0 to 360) - 0 (or 360) is red, 120 is green, 240 is blue
     //   saturation 	    Defines the saturation; 0% is a shade of gray and 100% is the full color (full saturation)
     //   lightness 	        Defines the lightness; 0% is black, 50% is normal, and 100% is white
 
-    // ! Generate Hue
+    // Generate Hue
     let hue = Math.floor(Math.random() * 360);
 
-    // ! Generate Saturation
+    // Generate Saturation
     let saturation = Math.floor(Math.random() * saturationMax);
     if (saturation < saturationMin) {
         saturation += saturationMin;
     }
 
-    // ! Generate Lightness
+    // Generate Lightness
     let lightness = Math.floor(Math.random() * lightnessMax);
     if (lightness < lightnessMin) {
         lightness += lightnessMin;
@@ -222,14 +214,15 @@ function randomColorHSL(
     return `hsl(${hue}, ${saturation}%, ${lightness}%)`;
 }
 
+// ! Generate colors and assign them to the elements
 function generateModifyAndPaint() {
-    // ! Generate colors
-    randomColor1 = randomColorHSL(35, 100, 50, 85);
+    // Generate colors
+    randomColor1 = randomColorHSL(75, 100, 50, 90);
     randomColor2 = ColorJS(randomColor1)
         .rotate(180)
         .hex();
 
-    // ! Create Shades of randomColor2
+    // Create Shades of randomColor2
     // Shades | Palette
     randomColor2_shade_dark = ColorJS(randomColor2)
         .darken(0.25)
@@ -249,7 +242,7 @@ function generateModifyAndPaint() {
     // Shades | Footer
     // footerLinkColor = ColorJS(randomColor2).lighten(0.25);
 
-    // ! Paint the walls
+    // Paint the walls
     document.body.style.background = randomColor1;
     logo.style.background = `-webkit-linear-gradient(360deg, ${logoColor1}, ${logoColor2})`;
     logo.style.textShadow = `0.1rem 0.1rem 0 ${logoColor3}`;
@@ -269,7 +262,7 @@ function generateModifyAndPaint() {
     paletteColor4.style.background = randomColor2_shade_darker;
     paletteColor5.style.background = randomColor2_shade_darkest;
 
-    // ! Display color values in the displays
+    // Display color values in the displays
     paletteColor1Value.innerHTML = `${(randomColor1 = ColorJS(
         randomColor1
     ).hex())}`;
@@ -279,6 +272,7 @@ function generateModifyAndPaint() {
     paletteColor5Value.innerHTML = `${randomColor2_shade_darkest}`;
 }
 
+// ! Copy color function
 function copyColor(e) {
     const copiedColor = e.target.innerText;
     const tempInput = document.createElement('input');
@@ -293,6 +287,7 @@ function copyColor(e) {
     setTimeout(showPalette, 2750);
 }
 
+// ! Measure container function
 function measureContainer() {
     ballWidth = ball.clientWidth;
     ballHeight = ball.clientHeight;
@@ -302,6 +297,7 @@ function measureContainer() {
     containerEdgeBottom = container.offsetHeight;
 }
 
+// ! Show palette function
 function showPalette() {
     // Hide
     ball.classList.add('hide');
@@ -320,18 +316,13 @@ function showPalette() {
     animateCSS(paletteColor4, 'slideInRight', 'faster');
     animateCSS(paletteColor5, 'slideInLeft', 'faster');
 
-    // Remove
-    btnStop.removeEventListener('click', stopMove);
-
     // Show
     palette.classList.remove('hide');
     palette.classList.add('show');
 }
 
+// ! Show ball function
 function showBall() {
-    // Event listener
-    btnStop.addEventListener('click', stopMove);
-
     // Hide
     palette.classList.remove('show');
     palette.classList.add('hide');
@@ -347,7 +338,12 @@ function showBall() {
     ball.classList.add('show');
 }
 
+// ! Show message function
 function showMessage() {
+    // Event listener
+    removeBtnStartEventListener();
+    removeBtnStopEventListener();
+
     // Hide
     ball.classList.remove('show');
     ball.classList.add('hide');
@@ -360,8 +356,15 @@ function showMessage() {
     message.classList.remove('hide');
     message.classList.add('show');
     message.style.zIndex = '110';
+
+    // Show palette after a timeout
+    setTimeout(function() {
+        addBtnStartEventListener();
+        addBtnStopEventListener();
+    }, 2750);
 }
 
+// ! Animate CSS function
 function animateCSS(element, animationName, speed, callback) {
     element.classList.add('animated', animationName, speed);
 
@@ -372,4 +375,45 @@ function animateCSS(element, animationName, speed, callback) {
     }
 
     element.addEventListener('animationend', handleAnimationEnd);
+}
+
+// ! Add initial and permanent event listener function
+function addInitialAndPermanentEventListener() {
+    window.addEventListener('resize', () => {
+        measureContainer();
+    });
+
+    paletteColorAllValues.forEach(paletteColorValue => {
+        paletteColorValue.addEventListener('click', copyColor);
+    });
+}
+
+function addBtnStartEventListener() {
+    btnStart.addEventListener('click', startMove);
+}
+
+function removeBtnStartEventListener() {
+    btnStart.removeEventListener('click', startMove);
+}
+
+function addBtnStopEventListener() {
+    btnStop.addEventListener('click', stopMove);
+}
+
+function removeBtnStopEventListener() {
+    btnStop.removeEventListener('click', stopMove);
+}
+
+function addSpacebarStartEventListener() {
+    document.body.onkeydown = e => {
+        if (e.keyCode == 32 && ballIsMoving == false) {
+            startMove();
+        } else {
+            stopMove();
+        }
+    };
+}
+
+function removeSpacebarStartEventListener() {
+    document.body.onkeydown = () => {};
 }
