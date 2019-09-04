@@ -20,6 +20,7 @@
     @include grid(2fr 1fr, none, none, 0);
     background: $color-dark-transparent-high;
     border-radius: $border-radius $border-radius 0 0;
+    box-shadow: 0 1rem 2.5rem rgba(0, 0, 0, 0.25);
     user-select: none;
     height: 7.5vh;
     margin: 0 auto;
@@ -30,6 +31,7 @@
     }
     @media screen and (max-width: 768px) {
         border-radius: 0;
+        box-shadow: none;
         height: 10vh;
         padding: 0 1rem;
         width: $container-width--widest;
@@ -269,42 +271,43 @@
 }
 
 // ! ======================= Waves =============================
-
-.wave {
-    bottom: 0;
-    left: 0;
-    position: fixed;
-    path {
-        filter: drop-shadow(0 -0.25rem 1rem rgba(0, 0, 0, 0.25));
-        transition: fill 0.15s;
-    }
-    &4 {
-        filter: blur(5rem);
-        height: 75vh;
-        z-index: 7;
-        @media screen and (max-width: 768px) {
-            height: 100vh;
-            transform: translate(-25vw, -10vh);
+.waveContainer {
+    .wave {
+        bottom: 0;
+        left: 0;
+        position: fixed;
+        path {
+            filter: drop-shadow(0 -0.25rem 1rem rgba(0, 0, 0, 0.25));
+            transition: fill 0.15s;
         }
-    }
-    &3 {
-        height: 75vh;
-        z-index: 8;
-        @media screen and (max-width: 768px) {
-            height: 100vh;
-        }
-    }
-    &2 {
-        height: 50vh;
-        z-index: 9;
-        @media screen and (max-width: 768px) {
+        &4 {
+            filter: blur(5rem);
             height: 75vh;
+            z-index: 7;
+            @media screen and (max-width: 768px) {
+                height: 100vh;
+                transform: translate(-25vw, -10vh);
+            }
         }
-    }
-    &1 {
-        z-index: 10;
-        @media screen and (max-width: 768px) {
+        &3 {
+            height: 75vh;
+            z-index: 8;
+            @media screen and (max-width: 768px) {
+                height: 100vh;
+            }
+        }
+        &2 {
             height: 50vh;
+            z-index: 9;
+            @media screen and (max-width: 768px) {
+                height: 75vh;
+            }
+        }
+        &1 {
+            z-index: 10;
+            @media screen and (max-width: 768px) {
+                height: 50vh;
+            }
         }
     }
 }

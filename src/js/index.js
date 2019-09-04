@@ -11,6 +11,8 @@ const btnStop = document.getElementById('btnStop');
 
 // UI | Container
 const container = document.querySelector('.container');
+const waveContainer = document.querySelector('.waveContainer');
+const wrapper = document.querySelector('#wrapper');
 const ball = document.querySelector('.ball');
 const message = document.querySelector('.message');
 
@@ -77,6 +79,10 @@ let ballIsMoving = false;
 
 // ! Initialize function
 function init() {
+    // Animate
+    animateCSS(waveContainer, 'fadeIn', 'slower', 'delay-5s');
+    animateCSS(wrapper, 'slideInDown', 'slow', 'delay-1s');
+
     // Add Event listener
     addInitialAndPermanentEventListener();
     addBtnStartEventListener();
@@ -409,8 +415,4 @@ function addSpacebarStartEventListener() {
             stopMove();
         }
     };
-}
-
-function removeSpacebarStartEventListener() {
-    document.body.onkeydown = () => {};
 }
