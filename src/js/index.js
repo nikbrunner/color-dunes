@@ -231,10 +231,9 @@ function generateModifyAndPaint() {
         .darken(0.75)
         .hex();
     // Shades | Logo
-    logoColor1 = randomColor2_shade_darker;
-    logoColor2 = ColorJS(logoColor1)
-        .rotate(15)
-        .lighten(0.5);
+    logoColor1 = randomColor2;
+    logoColor2 = randomColor2_shade_dark;
+
     logoColor3 = '#fff';
     // Shades | Footer
     // footerLinkColor = ColorJS(randomColor2).lighten(0.25);

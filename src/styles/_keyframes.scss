@@ -12,7 +12,6 @@
  * Copyright (c) 2019 Daniel Eden
  */
 
-// ! Bounce in Start ====================================================
 @-webkit-keyframes bounceIn {
     from,
     20%,
@@ -454,9 +453,6 @@
     }
 }
 
-// ! Bounce in ende ============================================0000
-
-// ! Slide in Start ====================================
 @-webkit-keyframes slideInDown {
     from {
         -webkit-transform: translate3d(0, -100%, 0);
@@ -593,8 +589,6 @@
         transform: translate3d(0, 100%, 0);
     }
 }
-
-// ! Slide in End ==================================
 
 .animated {
     -webkit-animation-duration: 1s;

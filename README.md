@@ -5,10 +5,9 @@
 This is my project for the first half of the JavaScript module.
 My goal is combine something like a screensaver, something beautiful to look at and a useful tool to find cool color palettes.
 
-## Links
+## URL
 
 -   [Netlify: color-dunes](https://color-dunes.netlify.com/)
--   [Surge: color-dunes](https://color-dunes.surge.sh)
 
 ## Tools
 
