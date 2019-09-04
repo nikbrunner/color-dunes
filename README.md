@@ -11,9 +11,9 @@ My goal is combine something like a screensaver, something beautiful to look at 
 
 ## Tools
 
--   [SCSS](https://sass-lang.com/)
--   [Parcel Bundler](https://parceljs.org)
--   [Color](https://www.npmjs.com/package/color)
+-   [SCSS](https://sass-lang.com/) for Styles
+-   [Color](https://www.npmjs.com/package/color) for Color Conversion
+-   [Parcel Bundler](https://parceljs.org) for Bundling
 
 ## ToDo
 
@@ -24,7 +24,8 @@ My goal is combine something like a screensaver, something beautiful to look at 
 -   [ ] Create 3 checkboxes for saturation and lightness presets
     -   https://danklammer.com/articles/simple-css-toggle-switch/
     -   https://stackoverflow.com/questions/9887360/how-can-i-check-if-a-checkbox-is-checked
--   [ ] Update Readme
+-   [ ] Font Awesome Credits for the SVG icons
+-   [ ] Final Deploy Update for Readme
 -   [ ] Final Deploy
     -   [ ] Netlify
     -   [ ] GitHub
