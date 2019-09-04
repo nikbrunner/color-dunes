@@ -9,6 +9,14 @@ const logo = document.querySelector('.brand__logo');
 const btnStart = document.getElementById('btnStart');
 const btnStop = document.getElementById('btnStop');
 
+// UI | Settings
+const satLow = document.getElementById('satLow');
+const satMid = document.getElementById('satMid');
+const satHigh = document.getElementById('satHigh');
+const lightnessLow = document.getElementById('lightnessLow');
+const lightnessMid = document.getElementById('lightnessMid');
+const lightnessHigh = document.getElementById('lightnessHigh');
+
 // UI | Container
 const container = document.querySelector('.container');
 const waveContainer = document.querySelector('.waveContainer');
@@ -38,9 +46,6 @@ const paletteColorAllValues = Array.prototype.slice.call(
 
 // UI | Footer
 const footer = document.querySelector('footer');
-// const footerLinks = Array.prototype.slice.call(
-//     document.getElementsByClassName('footer__link')
-// );
 
 // UI | Waves
 const wave1 = document.querySelector('.wave1__path');
@@ -203,15 +208,19 @@ function randomColorHSL(
     let hue = Math.floor(Math.random() * 360);
 
     // Generate Saturation
-    let saturation = Math.floor(Math.random() * saturationMax);
-    if (saturation < saturationMin) {
-        saturation += saturationMin;
+    let saturation = Math.floor(Math.random() * saturationMax) + saturationMin;
+    if (saturation > 100) {
+        saturation = saturationMax;
+    } else if (saturation < saturationMin) {
+        saturation = saturationMin;
     }
 
     // Generate Lightness
-    let lightness = Math.floor(Math.random() * lightnessMax);
-    if (lightness < lightnessMin) {
-        lightness += lightnessMin;
+    let lightness = Math.floor(Math.random() * lightnessMax) + lightnessMin;
+    if (lightness > 100) {
+        lightness = lightnessMax;
+    } else if (lightness < lightnessMin) {
+        lightness = lightnessMin;
     }
 
     return `hsl(${hue}, ${saturation}%, ${lightness}%)`;
@@ -219,8 +228,58 @@ function randomColorHSL(
 
 // ! Generate colors and assign them to the elements
 function generateModifyAndPaint() {
+    // Read checkboxes and generate randomColor1 appropriately
+    switch (true) {
+        // ! satLow
+        case satLow.checked && lightnessLow.checked:
+            randomColor1 = randomColorHSL(15, 50, 35, 50);
+            console.log('SatLow + LightnessLow: ' + randomColor1);
+            break;
+        case satLow.checked && lightnessMid.checked:
+            randomColor1 = randomColorHSL(15, 50, 50, 75);
+            console.log('SatLow + LightnessMid: ' + randomColor1);
+            break;
+        case satLow.checked && lightnessHigh.checked:
+            randomColor1 = randomColorHSL(15, 50, 75, 95);
+            console.log('SatLow + LightnessHigh: ' + randomColor1);
+            break;
+
+        // ! satMid
+        case satMid.checked && lightnessLow.checked:
+            randomColor1 = randomColorHSL(35, 75, 35, 50);
+            console.log('SatMid + LightnessLow: ' + randomColor1);
+            break;
+        case satMid.checked && lightnessMid.checked:
+            randomColor1 = randomColorHSL(35, 75, 50, 75);
+            console.log('SatMid + LightnessMid: ' + randomColor1);
+            break;
+        case satMid.checked && lightnessHigh.checked:
+            randomColor1 = randomColorHSL(35, 75, 75, 95);
+            console.log('SatMid + LightnessHigh: ' + randomColor1);
+            break;
+
+        // ! satHigh
+        case satHigh.checked && lightnessLow.checked:
+            randomColor1 = randomColorHSL(75, 95, 35, 50);
+            console.log('SatHigh + LightnessLow: ' + randomColor1);
+            break;
+        case satHigh.checked && lightnessMid.checked:
+            randomColor1 = randomColorHSL(75, 95, 50, 75);
+            console.log('SatHigh + LightnessMid: ' + randomColor1);
+            break;
+        case satHigh.checked && lightnessHigh.checked:
+            randomColor1 = randomColorHSL(75, 100, 75, 95);
+            console.log('SatHigh + LightnessHigh: ' + randomColor1);
+            break;
+
+        // ! default
+        default:
+            randomColor1 = randomColorHSL(40, 60, 40, 60);
+            console.log('default: ' + randomColor1);
+            break;
+    }
+
     // Generate colors
-    randomColor1 = randomColorHSL(75, 100, 50, 90);
     randomColor2 = ColorJS(randomColor1)
         .rotate(180)
         .hex();
