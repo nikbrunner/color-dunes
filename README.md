@@ -5,6 +5,10 @@
 This is my project for the first half of the JavaScript module.
 My goal is combine something like a screensaver, something beautiful to look at and a useful tool to find cool color palettes.
 
+## Links
+
+-   [Surge: color-dunes](https://color-dunes.surge.sh)
+
 ## Tools
 
 -   [SCSS](https://sass-lang.com/)
