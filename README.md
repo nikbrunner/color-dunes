@@ -9,10 +9,11 @@ My goal is combine something like a screensaver, something beautiful to look at 
 
 -   [Netlify: color-dunes](https://color-dunes.netlify.com/)
 
-## Tools
+## Tools & Resources
 
 -   [SCSS](https://sass-lang.com/) for Styles
 -   [Color](https://www.npmjs.com/package/color) for Color Conversion
+-   [Bytesize Icons](https://github.com/danklammer/bytesize-icons)
 -   [Parcel Bundler](https://parceljs.org) for Bundling
 
 ## ToDo
@@ -45,6 +46,7 @@ My goal is combine something like a screensaver, something beautiful to look at 
 -   [x] ~~_Refactor Transparency colors_~~ [2019-09-04]
 -   [x] ~~_Remove unused keyframe code_~~ [2019-09-04]
 -   [x] ~~_Optimize Logo Colors_~~ [2019-09-04]
+-   [x] ~~_Localize Fonts_~~ [2019-09-04]
 -   [ ] Optimize Responsiveness of fonts
 -   [ ] Prefixes
 
