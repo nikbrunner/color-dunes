@@ -97,6 +97,8 @@
     }
     @media screen and (max-width: 768px) {
         background: transparent;
+        border-radius: 0;
+        box-shadow: none;
         height: 80vh;
         width: $container-width--widest;
     }
@@ -115,6 +117,9 @@
     transition: opacity 0.5s;
     width: 100%;
     z-index: 100;
+    // @media screen and (max-width: 768px) {
+    //     height: 90%;
+    // }
     &__color {
         @include flex(row nowrap, center, center, center);
         background: $color-dark-transparent-low;
@@ -246,6 +251,7 @@
         width: $container-width--wider;
     }
     @media screen and (max-width: 768px) {
+        // background: $color-dark-transparent-high;
         border-radius: 0;
         border-radius: 0;
         bottom: 0;
@@ -271,17 +277,30 @@
         filter: blur(5rem);
         height: 75vh;
         z-index: 7;
+        @media screen and (max-width: 768px) {
+            height: 100vh;
+            transform: translate(-25vw, -10vh);
+        }
     }
     &3 {
         height: 75vh;
         z-index: 8;
+        @media screen and (max-width: 768px) {
+            height: 100vh;
+        }
     }
     &2 {
         height: 50vh;
         z-index: 9;
+        @media screen and (max-width: 768px) {
+            height: 75vh;
+        }
     }
     &1 {
         z-index: 10;
+        @media screen and (max-width: 768px) {
+            height: 50vh;
+        }
     }
 }
 

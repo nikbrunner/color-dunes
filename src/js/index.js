@@ -238,7 +238,7 @@ function generateModifyAndPaint() {
     logoColor2 = ColorJS(logoColor1)
         .rotate(15)
         .lighten(0.25);
-    logoColor3 = ColorJS(randomColor1).lighten(0.5);
+    logoColor3 = '#fff';
     // Shades | Footer
     // footerLinkColor = ColorJS(randomColor2).lighten(0.25);
 
@@ -304,6 +304,7 @@ function showPalette() {
     ball.classList.remove('show');
     footer.classList.add('show');
     footer.classList.remove('hide');
+    // footer.style.display = 'flex';
     message.classList.add('hide');
     message.classList.remove('show');
     message.innerHTML = '';
@@ -328,6 +329,7 @@ function showBall() {
     palette.classList.add('hide');
     footer.classList.add('hide');
     footer.classList.remove('show');
+    // footer.style.display = 'none';
     message.classList.remove('show');
     message.classList.add('hide');
     message.innerHTML = '';
