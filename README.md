@@ -46,7 +46,7 @@ My goal is combine something like a screensaver, something beautiful to look at 
 -   [x] ~~_Remove unused keyframe code_~~ [2019-09-04]
 -   [x] ~~_Optimize Logo Colors_~~ [2019-09-04]
 -   [x] ~~_Localize Fonts_~~ [2019-09-04]
--   [ ] Optimize Responsiveness of fonts
+-   [ ] Make the switches responsive
 -   [ ] Prefixes
 
 ### JavaScript
@@ -56,5 +56,5 @@ My goal is combine something like a screensaver, something beautiful to look at 
 -   [x] ~~_Generate HSL Value as random color starting point to be able to control saturation and lightness_~~ [2019-09-02]
 -   [x] ~~_Remove eventlisteners on message display_~~ [2019-09-04]
 -   [x] ~~_Create Function to add Event Listeners_~~ [2019-09-04]
--   [ ] Fix random color generator function
+-   [x] ~~_Fix random color generator function_~~ [2019-09-04]
 -   [ ] Function to place Ball to start position
