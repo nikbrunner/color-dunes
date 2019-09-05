@@ -439,21 +439,9 @@ function addInitialAndPermanentEventListener() {
 
 function checkWindowSizeAndAddEventListenerForPaletteColors() {
     if (detector.mobile() == null) {
-        container.style.background = 'red';
         paletteColorAllValues.forEach(paletteColorValue => {
             paletteColorValue.addEventListener('click', copyColor);
         });
-        console.log(
-            'Desktop Browser detected! Event listeners for palette bars added!'
-        );
-    } else if (detector.mobile() != null) {
-        container.style.background = 'green';
-        console.log(
-            'Mobile Browser detected! NO Event listeners for palette bars added!'
-        );
-        // paletteColorAllValues.forEach(paletteColorValue => {
-        //     paletteColorValue.addEventListener('click', copyColor);
-        // });
     }
 }
 

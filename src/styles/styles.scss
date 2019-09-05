@@ -36,6 +36,8 @@
         width: $container-width--wider;
     }
     @media screen and (max-width: 768px) {
+        @include grid(2fr 1fr 2fr, none, none, 0);
+        // @include flex(row nowrap, space-between, center, center);
         position: fixed;
         top: 0;
         left: 0;
@@ -56,6 +58,25 @@
                 color: white;
                 font-family: 'Pacifico', sans-serif;
                 font-size: 2rem;
+                word-spacing: -0.5rem;
+                @media screen and (max-width: 768px) {
+                    font-size: 1.5rem;
+                }
+            }
+        }
+    }
+    &__links {
+        display: none;
+
+        @media screen and (max-width: 768px) {
+            @include flex(row nowrap, center, center, center);
+            color: #dedede;
+            margin: 0 1rem;
+            opacity: 0.15;
+            text-decoration: none;
+            svg {
+                height: 1.25rem;
+                margin: 0 0.25rem;
             }
         }
     }
@@ -219,7 +240,7 @@
         border-radius: 0;
         -webkit-box-shadow: none;
         box-shadow: none;
-        height: 65vh;
+        height: 75vh;
         width: $container-width--widest;
     }
 }
@@ -393,16 +414,17 @@
         width: $container-width--wider;
     }
     @media screen and (max-width: 768px) {
-        -webkit-animation: none !important;
-        animation: none !important;
-        border-radius: 0;
-        border-radius: 0;
-        bottom: 0;
-        height: 10vh;
-        opacity: 1 !important;
-        position: fixed;
-        width: $container-width--widest;
-        width: 100vw;
+        display: none;
+        // -webkit-animation: none !important;
+        // animation: none !important;
+        // border-radius: 0;
+        // border-radius: 0;
+        // bottom: 0;
+        // height: 10vh;
+        // opacity: 1 !important;
+        // position: fixed;
+        // width: $container-width--widest;
+        // width: 100vw;
     }
     &__link {
         @include flex(row nowrap, center, center, center);
