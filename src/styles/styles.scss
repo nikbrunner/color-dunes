@@ -9,7 +9,7 @@
 #wrapper {
     margin-top: 2rem;
     height: 100vh;
-    text-align: center; // This is for the header container to be centered
+    text-align: center; // This is for the heading to be centered
     @media screen and (max-width: 768px) {
         margin-top: 0;
     }
@@ -27,11 +27,9 @@
 // ! ======================= Header ============================
 
 .header {
-    @include grid(2fr 1fr, none, none, 0);
+    @include grid(1fr 1fr, none, none, 0);
     background: $color-dark;
     border-radius: $border-radius $border-radius 0 0;
-    // -webkit-box-shadow: 0 1rem 2.5rem rgba(0, 0, 0, 0.25);
-    // box-shadow: 0 1rem 2.5rem rgba(0, 0, 0, 0.25);
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
@@ -46,7 +44,6 @@
         width: $container-width--wider;
     }
     @media screen and (max-width: 768px) {
-        @include grid(1fr 1fr, none, none, 0);
         background: $color-dark;
         position: fixed;
         top: 0;
@@ -222,7 +219,7 @@
         @include flex(row nowrap, center, center, center);
         position: fixed;
         top: 27.5vh;
-        left: 1rem;
+        right: 1rem;
         color: #dedede;
         opacity: 0.5;
         text-decoration: none;
