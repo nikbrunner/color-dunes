@@ -36,8 +36,9 @@
         width: $container-width--wider;
     }
     @media screen and (max-width: 768px) {
-        @include grid(2fr 1fr 2fr, none, none, 0);
+        @include grid(1fr 1fr, none, none, 0);
         // @include flex(row nowrap, space-between, center, center);
+        background: $color-dark;
         position: fixed;
         top: 0;
         left: 0;
@@ -70,10 +71,13 @@
 
         @media screen and (max-width: 768px) {
             @include flex(row nowrap, center, center, center);
+            position: fixed;
+            top: 27.5vh;
+            left: 1rem;
             color: #dedede;
-            margin: 0 1rem;
-            opacity: 0.15;
+            opacity: 0.5;
             text-decoration: none;
+            z-index: 1000;
             svg {
                 height: 1.25rem;
                 margin: 0 0.25rem;
@@ -83,6 +87,9 @@
     &__controls {
         @include flex(row nowrap, flex-end, center, center);
         z-index: 60;
+        // @media screen and (max-width: 768px) {
+        //     @include flex(row nowrap, center, center, center);
+        // }
         .controls {
             &__button {
                 background: transparent;
@@ -134,10 +141,11 @@
     }
     @media screen and (max-width: 768px) {
         @include grid(10% 90%, 0, none, 0);
+        // background: $color-dark-transparent-high;
+        background: $color-dark;
         position: fixed;
         top: 10vh;
         left: 0;
-        background: $color-dark-transparent-high;
         height: 15vh;
         padding: 0.25rem 1rem;
         grid-row-gap: 0;

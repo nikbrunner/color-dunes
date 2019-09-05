@@ -93,10 +93,10 @@ function init() {
     animateCSS(wrapper, 'slideInDown', 'slow', 'delay-1s');
 
     // Add Event listener
-    addInitialAndPermanentEventListener();
+    remeasureContainerAfterWindowResize();
+    detectDesktopBrowserAndAddEventListenerToPaletteBars();
     addBtnStartEventListener();
     addBtnStopEventListener();
-    checkWindowSizeAndAddEventListenerForPaletteColors();
 
     // Measurements
     measureContainer();
@@ -430,14 +430,13 @@ function animateCSS(element, animationName, speed, callback) {
 }
 
 // ! Add initial and permanent event listener function
-function addInitialAndPermanentEventListener() {
+function remeasureContainerAfterWindowResize() {
     window.addEventListener('resize', () => {
         measureContainer();
-        checkWindowSizeAndAddEventListenerForPaletteColors();
     });
 }
 
-function checkWindowSizeAndAddEventListenerForPaletteColors() {
+function detectDesktopBrowserAndAddEventListenerToPaletteBars() {
     if (detector.mobile() == null) {
         paletteColorAllValues.forEach(paletteColorValue => {
             paletteColorValue.addEventListener('click', copyColor);
