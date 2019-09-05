@@ -427,14 +427,16 @@ function animateCSS(element, animationName, speed, callback) {
 function addInitialAndPermanentEventListener() {
     window.addEventListener('resize', () => {
         measureContainer();
+        // console.log(window.innerWidth);
         checkWindowSizeAndAddEventListenerForPaletteColors();
     });
 }
 
 function checkWindowSizeAndAddEventListenerForPaletteColors() {
-    if (window.innerWidth >= 1024) {
+    if (window.innerWidth > 1024) {
         paletteColorAllValues.forEach(paletteColorValue => {
             paletteColorValue.addEventListener('click', copyColor);
+            // console.log('Event Listeners added');
         });
     }
 }

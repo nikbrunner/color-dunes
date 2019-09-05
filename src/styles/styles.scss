@@ -289,8 +289,8 @@
         font-family: 'Pacifico', sans-serif;
         font-size: 2rem;
         text-shadow: 0 0.075rem 2.5rem rgba(0, 0, 0, 0.5);
-        @media screen and (max-width: 768px) {
-            font-size: 1.25rem;
+        @media screen and (max-width: 1024px) {
+            font-size: 1.25rem !important;
         }
     }
     &__color {
