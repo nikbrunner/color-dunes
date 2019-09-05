@@ -18,7 +18,7 @@
 
 .header {
     @include grid(2fr 1fr, none, none, 0);
-    background: $color-dark-transparent-high;
+    background: $color-dark;
     border-radius: $border-radius $border-radius 0 0;
     -webkit-box-shadow: 0 1rem 2.5rem rgba(0, 0, 0, 0.25);
     box-shadow: 0 1rem 2.5rem rgba(0, 0, 0, 0.25);
@@ -129,8 +129,9 @@
 // ! ======================= Settings ==========================
 
 .settings {
-    @include grid(1fr 4fr, 0, none, 0.75rem);
-    background: $color-dark-transparent-high;
+    @include grid(1fr, 0, 1fr 1fr, 0.75rem);
+    // background: $color-dark-transparent-high;
+    background: $color-dark;
     margin: 0 auto;
     padding: 0.75rem 2.5rem;
     position: relative;
@@ -140,8 +141,7 @@
         width: $container-width--wider;
     }
     @media screen and (max-width: 768px) {
-        @include grid(10% 90%, 0, none, 0);
-        // background: $color-dark-transparent-high;
+        // @include grid(10% 90%, 0, none, 0);
         background: $color-dark;
         position: fixed;
         top: 10vh;
@@ -156,6 +156,7 @@
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         font-weight: normal;
         font-size: 1.5rem;
+        width: 2rem;
         @media screen and (max-width: 768px) {
             margin: 0;
         }
