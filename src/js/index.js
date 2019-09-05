@@ -428,19 +428,21 @@ function animateCSS(element, animationName, speed, callback) {
 function addInitialAndPermanentEventListener() {
     window.addEventListener('resize', () => {
         measureContainer();
-        checkWindowSizeAndAddEventListenerForPaletteColors();
     });
 }
 
 function checkWindowSizeAndAddEventListenerForPaletteColors() {
     if (window.mobileAndTabletcheck === true) {
+        container.style.background = 'red';
         paletteColorAllValues.forEach(paletteColorValue => {
-            paletteColorValue.removeEventListener('click', copyColor);
+            // paletteColorValue.removeEventListener('click', copyColor);
         });
+
         console.log(
             'Mobile Browser detected! NO Event listeners for palette bars added!'
         );
     } else {
+        container.style.background = 'green';
         paletteColorAllValues.forEach(paletteColorValue => {
             paletteColorValue.addEventListener('click', copyColor);
         });
