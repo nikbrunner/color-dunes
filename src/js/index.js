@@ -434,9 +434,6 @@ function addInitialAndPermanentEventListener() {
 
 function checkWindowSizeAndAddEventListenerForPaletteColors() {
     if (window.mobileAndTabletcheck === true) {
-        paletteColorAllValues.forEach(paletteColorValue => {
-            paletteColorValue.removeEventListener('click', copyColor);
-        });
         console.log(
             'Mobile Browser detected! NO Event listeners for palette bars added!'
         );
