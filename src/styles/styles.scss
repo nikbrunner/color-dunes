@@ -20,7 +20,11 @@
     @include grid(2fr 1fr, none, none, 0);
     background: $color-dark-transparent-high;
     border-radius: $border-radius $border-radius 0 0;
+    -webkit-box-shadow: 0 1rem 2.5rem rgba(0, 0, 0, 0.25);
     box-shadow: 0 1rem 2.5rem rgba(0, 0, 0, 0.25);
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
     user-select: none;
     height: 7.5vh;
     margin: 0 auto;
@@ -36,6 +40,7 @@
         top: 0;
         left: 0;
         border-radius: 0;
+        -webkit-box-shadow: none;
         box-shadow: none;
         height: 10vh;
         padding: 0 1rem;
@@ -79,7 +84,10 @@
                 }
                 &:hover {
                     opacity: 1;
+                    -webkit-filter: drop-shadow(0 0.1rem rgba(0, 0, 0, 0.25));
                     filter: drop-shadow(0 0.1rem rgba(0, 0, 0, 0.25));
+                    -webkit-transform: scale(1.25);
+                    -ms-transform: scale(1.25);
                     transform: scale(1.25);
                 }
                 &:focus {
@@ -151,6 +159,8 @@
         border: none;
         cursor: pointer;
         background-color: #707070;
+        -webkit-transition: background-color ease 0.3s;
+        -o-transition: background-color ease 0.3s;
         transition: background-color ease 0.3s;
         &:before {
             content: 'on off';
@@ -171,7 +181,10 @@
             color: #fff;
             text-shadow: -1px -1px rgba(0, 0, 0, 0.15);
             white-space: nowrap;
+            -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
             box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+            -webkit-transition: all cubic-bezier(0.3, 1.5, 0.7, 1) 0.3s;
+            -o-transition: all cubic-bezier(0.3, 1.5, 0.7, 1) 0.3s;
             transition: all cubic-bezier(0.3, 1.5, 0.7, 1) 0.3s;
         }
         &:checked {
@@ -188,6 +201,7 @@
 .container {
     background: $color-dark-transparent-low;
     border-radius: 0 0 $border-radius $border-radius;
+    -webkit-box-shadow: 0 1rem 2.5rem rgba(0, 0, 0, 0.25);
     box-shadow: 0 1rem 2.5rem rgba(0, 0, 0, 0.25);
     height: 60vh;
     margin: 0 auto;
@@ -203,6 +217,7 @@
         left: 0;
         background: transparent;
         border-radius: 0;
+        -webkit-box-shadow: none;
         box-shadow: none;
         height: 65vh;
         width: $container-width--widest;
@@ -219,12 +234,11 @@
     padding: 0;
     position: absolute;
     top: 0;
+    -webkit-transition: opacity 0.5s;
+    -o-transition: opacity 0.5s;
     transition: opacity 0.5s;
     width: 100%;
     z-index: 100;
-    // @media screen and (max-width: 768px) {
-    //     height: 90%;
-    // }
     &__color {
         @include flex(row nowrap, center, center, center);
         background: $color-dark-transparent-low;
@@ -234,36 +248,52 @@
         font-weight: normal;
         color: azure;
         text-shadow: 0 0.1rem rgba(0, 0, 0, 0.25);
+        -webkit-transition: all 0.15s;
+        -o-transition: all 0.15s;
         transition: all 0.15s;
         width: 100%;
         &--1 {
+            -webkit-animation-delay: 0s !important;
             animation-delay: 0s !important;
+            -ms-flex-preferred-size: 35%;
             flex-basis: 35%;
         }
         &--2 {
+            -webkit-animation-delay: 0.1s !important;
             animation-delay: 0.1s !important;
+            -ms-flex-preferred-size: 10%;
             flex-basis: 10%;
         }
         &--3 {
+            -webkit-animation-delay: 0.2s !important;
             animation-delay: 0.2s !important;
+            -ms-flex-preferred-size: 10%;
             flex-basis: 10%;
         }
         &--4 {
+            -webkit-animation-delay: 0.3s !important;
             animation-delay: 0.3s !important;
+            -ms-flex-preferred-size: 10%;
             flex-basis: 10%;
         }
         &--5 {
+            -webkit-animation-delay: 0.4s !important;
             animation-delay: 0.4s !important;
+            -ms-flex-preferred-size: 35%;
             flex-basis: 35%;
         }
         &:hover {
+            -webkit-filter: drop-shadow(0 0 3.5rem rgba(0, 0, 0, 0.25));
             filter: drop-shadow(0 0 3.5rem rgba(0, 0, 0, 0.25));
+            -ms-flex-preferred-size: 50%;
             flex-basis: 50%;
             z-index: 100;
         }
         &__value {
             padding-bottom: 0.5rem;
             position: relative;
+            -webkit-transition: all 0.15s;
+            -o-transition: all 0.15s;
             transition: all 0.15s;
             &::before {
                 background-color: #ffffff;
@@ -272,12 +302,23 @@
                 height: 0.3rem;
                 left: 50%;
                 position: absolute;
+                -webkit-transform-origin: center;
+                -ms-transform-origin: center;
                 transform-origin: center;
+                -webkit-transform: translate(-50%, 0) scaleX(0);
+                -ms-transform: translate(-50%, 0) scaleX(0);
                 transform: translate(-50%, 0) scaleX(0);
+                -webkit-transition: -webkit-transform 0.25s ease-in-out;
+                transition: -webkit-transform 0.25s ease-in-out;
+                -o-transition: transform 0.25s ease-in-out;
                 transition: transform 0.25s ease-in-out;
+                transition: transform 0.25s ease-in-out,
+                    -webkit-transform 0.25s ease-in-out;
                 width: 250%;
             }
             &:hover::before {
+                -webkit-transform: translate(-50%, 0) scaleX(1);
+                -ms-transform: translate(-50%, 0) scaleX(1);
                 transform: translate(-50%, 0) scaleX(1);
                 // Maybe mq for mobiel here
             }
@@ -308,6 +349,7 @@
     }
     &__color {
         border-radius: $border-radius;
+        -webkit-filter: drop-shadow(0 0.25rem 1rem rgba(0, 0, 0, 0.25));
         filter: drop-shadow(0 0.25rem 1rem rgba(0, 0, 0, 0.25));
         font-family: 'Ubuntu Mono', monospace;
         margin: 0 0.5rem;
@@ -319,11 +361,13 @@
 
 .ball {
     background: whitesmoke;
-    // border-radius: 50%;
     border-radius: 41% 59% 38% 62% / 57% 41% 59% 43%;
+    -webkit-animation: rotate 5s linear infinite;
     animation: rotate 5s linear infinite;
     height: 5rem;
     position: absolute;
+    -webkit-transition: opacity 0.5s;
+    -o-transition: opacity 0.5s;
     transition: opacity 0.5s;
     width: 5rem;
     z-index: 55;
@@ -340,6 +384,8 @@
     margin: 0 auto;
     padding: 0 2.5rem;
     position: relative;
+    -webkit-transition: opacity 1s;
+    -o-transition: opacity 1s;
     transition: opacity 1s;
     width: $container-width;
     z-index: 110;
@@ -347,6 +393,7 @@
         width: $container-width--wider;
     }
     @media screen and (max-width: 768px) {
+        -webkit-animation: none !important;
         animation: none !important;
         border-radius: 0;
         border-radius: 0;
