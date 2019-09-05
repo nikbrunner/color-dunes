@@ -49,6 +49,10 @@ My goal is combine something like a screensaver, something beautiful to look at 
 -   [x] ~~_Localize Fonts_~~ [2019-09-04]
 -   [x] ~~_Make the container smaller since we now have the settings menu_~~ [2019-09-04]
 -   [x] ~~_Make the switches responsive_~~ [2019-09-04]
+
+#### Responsiveness
+
+-   [ ] Check most common browsers
 -   [ ] Fix problem where the header gets pushed out of the screen to the top when the message appears. Maybe solvable by 'fixing position' of header and settings
 
 ### JavaScript
@@ -62,3 +66,4 @@ My goal is combine something like a screensaver, something beautiful to look at 
 -   [x] ~~_Check Edgecases for the switches_~~ [2019-09-04]
 -   [x] ~~_Animate the Ball_~~ [2019-09-04]
 -   [x] ~~_Generated color values still need work_~~ [2019-09-04]
+-   [ ] Add function to detect mobile browsers and add eventlisteners depending on the result
