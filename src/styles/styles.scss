@@ -9,9 +9,19 @@
 #wrapper {
     margin-top: 2rem;
     height: 100vh;
+    text-align: center; // This is for the header container to be centered
     @media screen and (max-width: 768px) {
         margin-top: 0;
     }
+}
+
+// ! ======================= Header Container ==================
+
+.heading {
+    display: inline-block;
+    margin: 0 auto;
+    -webkit-box-shadow: 0 1rem 2.5rem rgba(0, 0, 0, 0.25);
+    box-shadow: 0 1rem 2.5rem rgba(0, 0, 0, 0.25);
 }
 
 // ! ======================= Header ============================
@@ -20,8 +30,8 @@
     @include grid(2fr 1fr, none, none, 0);
     background: $color-dark;
     border-radius: $border-radius $border-radius 0 0;
-    -webkit-box-shadow: 0 1rem 2.5rem rgba(0, 0, 0, 0.25);
-    box-shadow: 0 1rem 2.5rem rgba(0, 0, 0, 0.25);
+    // -webkit-box-shadow: 0 1rem 2.5rem rgba(0, 0, 0, 0.25);
+    // box-shadow: 0 1rem 2.5rem rgba(0, 0, 0, 0.25);
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
@@ -37,7 +47,6 @@
     }
     @media screen and (max-width: 768px) {
         @include grid(1fr 1fr, none, none, 0);
-        // @include flex(row nowrap, space-between, center, center);
         background: $color-dark;
         position: fixed;
         top: 0;
@@ -66,30 +75,9 @@
             }
         }
     }
-    &__links {
-        display: none;
-
-        @media screen and (max-width: 768px) {
-            @include flex(row nowrap, center, center, center);
-            position: fixed;
-            top: 27.5vh;
-            left: 1rem;
-            color: #dedede;
-            opacity: 0.5;
-            text-decoration: none;
-            z-index: 1000;
-            svg {
-                height: 1.25rem;
-                margin: 0 0.25rem;
-            }
-        }
-    }
     &__controls {
         @include flex(row nowrap, flex-end, center, center);
         z-index: 60;
-        // @media screen and (max-width: 768px) {
-        //     @include flex(row nowrap, center, center, center);
-        // }
         .controls {
             &__button {
                 background: transparent;
@@ -130,7 +118,8 @@
 
 .settings {
     @include grid(1fr, 0, 1fr 1fr, 0.75rem);
-    // background: $color-dark-transparent-high;
+    // -webkit-box-shadow: 0 1rem 2.5rem rgba(0, 0, 0, 0.25);
+    // box-shadow: 0 1rem 2.5rem rgba(0, 0, 0, 0.25);
     background: $color-dark;
     margin: 0 auto;
     padding: 0.75rem 2.5rem;
@@ -141,7 +130,6 @@
         width: $container-width--wider;
     }
     @media screen and (max-width: 768px) {
-        // @include grid(10% 90%, 0, none, 0);
         background: $color-dark;
         position: fixed;
         top: 10vh;
@@ -226,6 +214,26 @@
     }
 }
 
+// ! ======================= Mobile GitHubLink =================
+
+#mobileGitHubLink {
+    display: none;
+    @media screen and (max-width: 768px) {
+        @include flex(row nowrap, center, center, center);
+        position: fixed;
+        top: 27.5vh;
+        left: 1rem;
+        color: #dedede;
+        opacity: 0.5;
+        text-decoration: none;
+        z-index: 1000;
+        svg {
+            height: 1.25rem;
+            margin: 0 0.25rem;
+        }
+    }
+}
+
 // ! ======================= Container =========================
 
 .container {
@@ -237,7 +245,7 @@
     margin: 0 auto;
     position: relative;
     width: $container-width;
-    z-index: 50;
+    z-index: 200;
     @media screen and (max-width: 1024px) {
         width: $container-width--wider;
     }
